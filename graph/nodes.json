@@ -1,0 +1,212 @@
+[
+  {
+    "id": ".agents/skills/normalize-file/SKILL.md",
+    "label": "SKILL",
+    "type": "document",
+    "path": ".agents/skills/normalize-file/SKILL.md",
+    "description": []
+  },
+  {
+    "id": ".github/ISSUE_TEMPLATE/bug_report.md",
+    "label": "[BUG] ",
+    "type": "document",
+    "path": ".github/ISSUE_TEMPLATE/bug_report.md",
+    "description": ""
+  },
+  {
+    "id": ".github/ISSUE_TEMPLATE/feature_request.md",
+    "label": "[FEATURE] ",
+    "type": "document",
+    "path": ".github/ISSUE_TEMPLATE/feature_request.md",
+    "description": ""
+  },
+  {
+    "id": ".github/pull_request_template.md",
+    "label": "pull_request_template",
+    "type": "document",
+    "path": ".github/pull_request_template.md",
+    "description": ""
+  },
+  {
+    "id": "branching-strategy.md",
+    "label": "branching-strategy",
+    "type": "document",
+    "path": "branching-strategy.md",
+    "description": ""
+  },
+  {
+    "id": "CONTRIBUTING.md",
+    "label": "CONTRIBUTING",
+    "type": "document",
+    "path": "CONTRIBUTING.md",
+    "description": ""
+  },
+  {
+    "id": "DOC-RULES",
+    "label": "business-rules",
+    "type": "business_rule",
+    "path": "docs/analysis/business-rules.md",
+    "description": []
+  },
+  {
+    "id": "DOC-SRS",
+    "label": "srs",
+    "type": "document",
+    "path": "docs/analysis/srs.md",
+    "description": ""
+  },
+  {
+    "id": "DOC-USE-CASES",
+    "label": "use-cases",
+    "type": "use_case",
+    "path": "docs/analysis/use-cases.md",
+    "description": "Interactive use cases for portfolio owners and recruiters."
+  },
+  {
+    "id": "DOC-USER-FLOWS",
+    "label": "user-flows",
+    "type": "user_flow",
+    "path": "docs/analysis/user-flows.md",
+    "description": []
+  },
+  {
+    "id": "DOC-ARCH-API",
+    "label": "api",
+    "type": "api",
+    "path": "docs/architecture/api.md",
+    "description": []
+  },
+  {
+    "id": "DOC-ARCHITECTURE",
+    "label": "architecture",
+    "type": "architecture",
+    "path": "docs/architecture/architecture.md",
+    "description": ""
+  },
+  {
+    "id": "DOC-ARCH-DATABASE",
+    "label": "database",
+    "type": "database",
+    "path": "docs/architecture/database.md",
+    "description": ""
+  },
+  {
+    "id": "DOC-CHANGES",
+    "label": "changes",
+    "type": "document",
+    "path": "docs/changelog/changes.md",
+    "description": ""
+  },
+  {
+    "id": "DOC-GLOSSARY",
+    "label": "glossary",
+    "type": "document",
+    "path": "docs/project/glossary.md",
+    "description": ""
+  },
+  {
+    "id": "DOC-METADATA-SCHEMA",
+    "label": "metadata-schema",
+    "type": "document",
+    "path": "docs/project/metadata-schema.md",
+    "description": ""
+  },
+  {
+    "id": "DOC-PROJECT-STRUCTURE",
+    "label": "project-structure",
+    "type": "document",
+    "path": "docs/project/project-structure.md",
+    "description": ""
+  },
+  {
+    "id": "DOC-STATUS",
+    "label": "status",
+    "type": "document",
+    "path": "docs/project/status.md",
+    "description": ""
+  },
+  {
+    "id": "DOC-TECH-STACK",
+    "label": "tech-stack",
+    "type": "document",
+    "path": "docs/project/tech-stack.md",
+    "description": ""
+  },
+  {
+    "id": "DOC-VISION",
+    "label": "vision",
+    "type": "document",
+    "path": "docs/project/vision.md",
+    "description": ""
+  },
+  {
+    "id": "DOC-BRD",
+    "label": "brd",
+    "type": "requirement",
+    "path": "docs/requirements/brd.md",
+    "description": ""
+  },
+  {
+    "id": "DOC-PRD",
+    "label": "prd",
+    "type": "requirement",
+    "path": "docs/requirements/prd.md",
+    "description": ""
+  },
+  {
+    "id": "DOC-RTM",
+    "label": "rtm",
+    "type": "requirement",
+    "path": "docs/requirements/rtm.md",
+    "description": "Matrix mapping requirements to design, code, and test artifacts."
+  },
+  {
+    "id": "DOC-UI-GUIDELINES",
+    "label": "ui-guidelines",
+    "type": "ui",
+    "path": "docs/ui/ui-guidelines.md",
+    "description": []
+  },
+  {
+    "id": "modules/sample-module/api.md",
+    "label": "api",
+    "type": "document",
+    "path": "modules/sample-module/api.md",
+    "description": ""
+  },
+  {
+    "id": "modules/sample-module/flow.md",
+    "label": "flow",
+    "type": "document",
+    "path": "modules/sample-module/flow.md",
+    "description": ""
+  },
+  {
+    "id": "modules/sample-module/overview.md",
+    "label": "overview",
+    "type": "document",
+    "path": "modules/sample-module/overview.md",
+    "description": ""
+  },
+  {
+    "id": "modules/sample-module/requirements.md",
+    "label": "requirements",
+    "type": "document",
+    "path": "modules/sample-module/requirements.md",
+    "description": ""
+  },
+  {
+    "id": "README-TECH.md",
+    "label": "README-TECH",
+    "type": "document",
+    "path": "README-TECH.md",
+    "description": ""
+  },
+  {
+    "id": "README.vi.md",
+    "label": "README.vi",
+    "type": "document",
+    "path": "README.vi.md",
+    "description": ""
+  }
+]

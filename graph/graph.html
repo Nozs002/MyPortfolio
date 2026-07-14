@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MyPortfolio Project Knowledge Graph</title>
+
+    <!-- Cytoscape.js for high performance graph rendering -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.26.0/cytoscape.min.js"></script>
+
+    <!-- FontAwesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Google Fonts - Outfit and Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="graph.css" />
+  </head>
+
+  <body>
+    <div id="app-container">
+      <!-- Obsidian Left Sidebar File Explorer -->
+      <aside class="obsidian-explorer">
+        <div class="explorer-header">
+          <span class="explorer-title"
+            ><i class="fa-solid fa-folder-open"></i> Vault Files</span
+          >
+          <div class="explorer-actions">
+            <button class="explorer-action-btn" title="Sort Files">
+              <i class="fa-solid fa-arrow-down-a-z"></i>
+            </button>
+            <button
+              class="explorer-action-btn"
+              id="collapse-explorer-btn"
+              title="Collapse Folders"
+            >
+              <i class="fa-solid fa-compress"></i>
+            </button>
+          </div>
+        </div>
+        <div class="file-tree" id="file-tree">
+          <!-- Dynamically populated file explorer tree -->
+          <div class="loading-explorer">Loading file list...</div>
+        </div>
+      </aside>
+
+      <!-- Main Content Area: Graph Viewport -->
+      <main class="graph-pane">
+        <!-- Title Bar inside Viewport -->
+        <div class="graph-title-bar">
+          <i class="fa-solid fa-circle-nodes"></i>
+          <span>Graph view</span>
+        </div>
+
+        <!-- Canvas Viewport -->
+        <div id="graph-container"></div>
+
+        <!-- Loading Overlay -->
+        <div class="loading-overlay" id="loading-overlay">
+          <div class="spinner"></div>
+          <p>Assembling architecture graph...</p>
+        </div>
+
+        <!-- Floating Settings Panel (Collapsible Card exactly matching sample) -->
+        <div class="graph-settings-panel glass" id="graph-settings">
+          <!-- Filters Group -->
+          <div class="settings-group">
+            <div class="settings-group-header active">
+              <span
+                ><i class="fa-solid fa-chevron-down toggle-icon"></i>
+                Filters</span
+              >
+            </div>
+            <div class="settings-group-content">
+              <!-- Search bar -->
+              <div class="search-wrapper">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input
+                  type="text"
+                  id="search-input"
+                  placeholder="Search files, requirements..."
+                  autocomplete="off"
+                />
+                <button
+                  id="clear-search-btn"
+                  title="Clear Search"
+                  class="btn-icon"
+                >
+                  <i class="fa-solid fa-times"></i>
+                </button>
+              </div>
+
+              <div class="filter-subtitle">Filter Types</div>
+              <div class="filter-options">
+                <label class="filter-item">
+                  <input
+                    type="checkbox"
+                    id="filter-project"
+                    checked
+                    value="project"
+                  />
+                  <span class="custom-checkbox cb-project"></span>
+                  <span>Project</span>
+                </label>
+                <label class="filter-item">
+                  <input
+                    type="checkbox"
+                    id="filter-document"
+                    checked
+                    value="document"
+                  />
+                  <span class="custom-checkbox cb-document"></span>
+                  <span>Documents</span>
+                </label>
+                <label class="filter-item">
+                  <input
+                    type="checkbox"
+                    id="filter-module"
+                    checked
+                    value="module"
+                  />
+                  <span class="custom-checkbox cb-module"></span>
+                  <span>Modules</span>
+                </label>
+                <label class="filter-item">
+                  <input
+                    type="checkbox"
+                    id="filter-requirement"
+                    checked
+                    value="requirement"
+                  />
+                  <span class="custom-checkbox cb-requirement"></span>
+                  <span>Requirements</span>
+                </label>
+                <label class="filter-item">
+                  <input
+                    type="checkbox"
+                    id="filter-business_rule"
+                    checked
+                    value="business_rule"
+                  />
+                  <span class="custom-checkbox cb-business_rule"></span>
+                  <span>Business Rules</span>
+                </label>
+                <label class="filter-item">
+                  <input
+                    type="checkbox"
+                    id="filter-use_case"
+                    checked
+                    value="use_case"
+                  />
+                  <span class="custom-checkbox cb-use_case"></span>
+                  <span>Use Cases</span>
+                </label>
+                <label class="filter-item">
+                  <input
+                    type="checkbox"
+                    id="filter-user_flow"
+                    checked
+                    value="user_flow"
+                  />
+                  <span class="custom-checkbox cb-user_flow"></span>
+                  <span>User Flows</span>
+                </label>
+                <label class="filter-item">
+                  <input type="checkbox" id="filter-api" checked value="api" />
+                  <span class="custom-checkbox cb-api"></span>
+                  <span>APIs</span>
+                </label>
+                <label class="filter-item">
+                  <input
+                    type="checkbox"
+                    id="filter-database"
+                    checked
+                    value="database"
+                  />
+                  <span class="custom-checkbox cb-database"></span>
+                  <span>Databases</span>
+                </label>
+                <label class="filter-item">
+                  <input
+                    type="checkbox"
+                    id="filter-table"
+                    checked
+                    value="table"
+                  />
+                  <span class="custom-checkbox cb-table"></span>
+                  <span>Tables</span>
+                </label>
+                <label class="filter-item">
+                  <input
+                    type="checkbox"
+                    id="filter-architecture"
+                    checked
+                    value="architecture"
+                  />
+                  <span class="custom-checkbox cb-architecture"></span>
+                  <span>Architecture</span>
+                </label>
+                <label class="filter-item">
+                  <input type="checkbox" id="filter-ui" checked value="ui" />
+                  <span class="custom-checkbox cb-ui"></span>
+                  <span>UI Screens</span>
+                </label>
+                <label class="filter-item">
+                  <input
+                    type="checkbox"
+                    id="filter-component"
+                    checked
+                    value="component"
+                  />
+                  <span class="custom-checkbox cb-component"></span>
+                  <span>Components</span>
+                </label>
+                <label class="filter-item">
+                  <input
+                    type="checkbox"
+                    id="filter-source"
+                    checked
+                    value="source"
+                  />
+                  <span class="custom-checkbox cb-source"></span>
+                  <span>Source Files</span>
+                </label>
+                <label class="filter-item">
+                  <input
+                    type="checkbox"
+                    id="filter-test"
+                    checked
+                    value="test"
+                  />
+                  <span class="custom-checkbox cb-test"></span>
+                  <span>Test Cases</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Display Group (Matching Obsidian Graph parameters) -->
+          <div class="settings-group">
+            <div class="settings-group-header active">
+              <span
+                ><i class="fa-solid fa-chevron-down toggle-icon"></i>
+                Display</span
+              >
+            </div>
+            <div class="settings-group-content">
+              <div class="slider-row">
+                <span>Node size</span>
+                <input
+                  type="range"
+                  id="node-size-slider"
+                  min="6"
+                  max="30"
+                  value="14"
+                />
+              </div>
+              <div class="slider-row">
+                <span>Link thickness</span>
+                <input
+                  type="range"
+                  id="link-thickness-slider"
+                  min="0.5"
+                  max="5"
+                  step="0.5"
+                  value="1"
+                />
+              </div>
+              <div class="slider-row">
+                <span>Text size</span>
+                <input
+                  type="range"
+                  id="text-size-slider"
+                  min="6"
+                  max="18"
+                  value="10"
+                />
+              </div>
+              <div class="slider-row checkbox-row">
+                <span>Arrows</span>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="arrows-toggle" checked />
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+              <div class="button-row">
+                <button id="reset-zoom-btn" class="btn btn-secondary">
+                  <i class="fa-solid fa-expand"></i> Fit View
+                </button>
+                <button id="rearrange-btn" class="btn btn-secondary">
+                  <i class="fa-solid fa-rotate"></i> Recalculate
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Data Sync / Export -->
+          <div class="settings-group">
+            <div class="settings-group-header">
+              <span
+                ><i class="fa-solid fa-chevron-right toggle-icon"></i> Data
+                Sync</span
+              >
+            </div>
+            <div class="settings-group-content collapsed">
+              <button
+                id="export-json-btn"
+                class="btn btn-primary"
+                style="width: 100%; border-color: rgba(139, 92, 246, 0.4)"
+              >
+                <i class="fa-solid fa-download"></i> Export edges.json
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- Details Slide-out Sidebar (Right) -->
+      <aside class="detail-sidebar glass" id="detail-sidebar">
+        <button id="close-sidebar-btn" class="close-btn" title="Close Panel">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="sidebar-content">
+          <div id="no-selection-msg">
+            <i class="fa-solid fa-hand-pointer pulse-icon"></i>
+            <h3>Select a Node</h3>
+            <p>
+              Click on any element in the knowledge graph or select it in the
+              file explorer to inspect its metadata and relationships.
+            </p>
+          </div>
+          <div id="selection-details" class="hidden">
+            <span class="badge" id="detail-type">Requirement</span>
+            <h2 id="detail-title">BR-01</h2>
+            <div class="divider"></div>
+
+            <div class="detail-section">
+              <h3>Description</h3>
+              <p id="detail-desc" class="description-text">
+                No description available.
+              </p>
+            </div>
+
+            <div class="detail-section" id="detail-path-section">
+              <h3>File Path / ID</h3>
+              <code id="detail-path" class="code-block"
+                >docs/requirements/brd.md</code
+              >
+            </div>
+
+            <!-- Custom Metadata Fields for Human/AI Navigation -->
+            <div class="detail-section" id="detail-meta-section">
+              <h3>Entity Metadata</h3>
+              <div id="detail-meta-container">
+                <!-- Programmatically populated fields -->
+              </div>
+            </div>
+
+            <!-- Interactive Relationship Editor -->
+            <div class="detail-section" id="section-add-connection">
+              <h3>Add Relationship</h3>
+              <div class="edit-row">
+                <label
+                  for="new-conn-target"
+                  style="
+                    font-size: 9px;
+                    text-transform: uppercase;
+                    color: var(--text-secondary);
+                    display: block;
+                    margin-bottom: 4px;
+                  "
+                  >Target Node</label
+                >
+                <select id="new-conn-target" class="select-input"></select>
+              </div>
+              <div class="edit-row">
+                <label
+                  for="new-conn-type"
+                  style="
+                    font-size: 9px;
+                    text-transform: uppercase;
+                    color: var(--text-secondary);
+                    display: block;
+                    margin-bottom: 4px;
+                  "
+                  >Relationship Type</label
+                >
+                <select id="new-conn-type" class="select-input">
+                  <option value="depends_on">
+                    depends_on (Module -> Module)
+                  </option>
+                  <option value="implements">implements (Req -> Code)</option>
+                  <option value="belongs_to">
+                    belongs_to (Feature -> Module)
+                  </option>
+                  <option value="uses">uses (Feature -> API/DB)</option>
+                  <option value="tested_by">tested_by (Req -> Test)</option>
+                  <option value="contains">contains (Folder -> File)</option>
+                  <option value="links">links (Wiki / Mention chéo)</option>
+                  <option value="references">references (Code -> Rule)</option>
+                  <option value="calls">calls (API -> API)</option>
+                  <option value="extends">extends (Interface -> Class)</option>
+                  <option value="inherits">inherits (Class -> Class)</option>
+                </select>
+              </div>
+              <button
+                id="add-conn-btn"
+                class="btn"
+                style="
+                  width: 100%;
+                  margin-top: 4px;
+                  background-color: rgba(139, 92, 246, 0.15);
+                  border-color: rgba(139, 92, 246, 0.3);
+                "
+              >
+                <i class="fa-solid fa-link"></i> Add Relationship
+              </button>
+            </div>
+
+            <div class="detail-section" id="section-connections">
+              <h3>Relationships</h3>
+              <div class="connections-list" id="detail-connections">
+                <!-- Connected items generated here -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Custom Visualization Logic -->
+    <script src="graph.js"></script>
+  </body>
+</html>

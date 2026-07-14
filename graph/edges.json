@@ -1,0 +1,32 @@
+[
+  {
+    "source": "DOC-RULES",
+    "target": "DOC-BRD",
+    "relation": "depends_on"
+  },
+  {
+    "source": "DOC-USE-CASES",
+    "target": "DOC-PRD",
+    "relation": "depends_on"
+  },
+  {
+    "source": "DOC-USER-FLOWS",
+    "target": "DOC-USE-CASES",
+    "relation": "depends_on"
+  },
+  {
+    "source": "DOC-ARCH-API",
+    "target": "DOC-PRD",
+    "relation": "depends_on"
+  },
+  {
+    "source": "DOC-RTM",
+    "target": "DOC-PRD",
+    "relation": "depends_on"
+  },
+  {
+    "source": "DOC-RTM",
+    "target": "DOC-BRD",
+    "relation": "depends_on"
+  }
+]

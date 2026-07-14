@@ -1,0 +1,3 @@
+Yêu cầu khi có tài liệu mới được thêm vào dự án:
+Mỗi khi thêm một tài liệu mới, mở terminal tại thư mục gốc của dự án và chạy lệnh:
+npm.cmd run generate-graph

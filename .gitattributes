@@ -1,0 +1,5 @@
+# Bỏ qua thư mục graph khỏi thống kê ngôn ngữ của GitHub
+graph/* linguist-vendored
+
+# (Tùy chọn) Đánh dấu các file trong docs là tài liệu để Github xử lý đúng
+docs/* linguist-documentation
