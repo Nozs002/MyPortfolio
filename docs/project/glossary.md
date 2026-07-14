@@ -1,15 +1,19 @@
 ---
 id: DOC-GLOSSARY
-type: document
+type: glossary
 title: glossary
 status: approved
 version: 1.0
 owner: PO
 tags:
   - glossary
-  - terminology
-  - conventions
-last_updated: 2026-07-11
+  - terms
+  - vocabulary
+related:
+  - DOC-VISION
+  - DOC-BRD
+  - DOC-PRD
+last_updated: 2026-07-14
 ---
 
 # Project Glossary
@@ -53,17 +57,21 @@ term.
 
 # General Terms
 
-| Term           | Definition                                      |
-| -------------- | ----------------------------------------------- |
-| User           | A person who uses the system.                   |
-| Administrator  | A user with management permissions.             |
-| Authentication | Verifying a user's identity.                    |
-| Authorization  | Determining what a user is allowed to access.   |
-| Session        | The authenticated state of a user.              |
-| Access Token   | Token used to access protected APIs.            |
-| Refresh Token  | Token used to obtain a new Access Token.        |
-| Role           | A collection of permissions assigned to a user. |
-| Permission     | A specific action a user is allowed to perform. |
+| Term             | Definition                                                                    |
+| ---------------- | ----------------------------------------------------------------------------- |
+| User             | A person who uses the system.                                                 |
+| Administrator    | A user with management permissions.                                           |
+| Authentication   | Verifying a user's identity.                                                  |
+| Authorization    | Determining what a user is allowed to access.                                 |
+| Session          | The authenticated state of a user.                                            |
+| Access Token     | Token used to access protected APIs.                                          |
+| Refresh Token    | Token used to obtain a new Access Token.                                      |
+| Role             | A collection of permissions assigned to a user.                               |
+| Permission       | A specific action a user is allowed to perform.                               |
+| Audit Log        | Nhật ký ghi lại các hành động quản trị hệ thống phục vụ giám sát bảo mật.     |
+| Project Version  | Bản sao lưu lịch sử của dự án tại một thời điểm, phục vụ tính năng khôi phục. |
+| Analytics Metric | Chỉ số đo lường tương tác phi danh tính của người dùng (tải CV, xem dự án).   |
+| Contact Message  | Tin nhắn hoặc yêu cầu kết nối từ nhà tuyển dụng gửi qua form liên hệ.         |
 
 ---
 

@@ -5,6 +5,11 @@
     "relation": "depends_on"
   },
   {
+    "source": "DOC-SRS",
+    "target": "DOC-PRD",
+    "relation": "depends_on"
+  },
+  {
     "source": "DOC-USE-CASES",
     "target": "DOC-PRD",
     "relation": "depends_on"
@@ -17,6 +22,96 @@
   {
     "source": "DOC-ARCH-API",
     "target": "DOC-PRD",
+    "relation": "depends_on"
+  },
+  {
+    "source": "DOC-ARCHITECTURE",
+    "target": "DOC-SRS",
+    "relation": "depends_on"
+  },
+  {
+    "source": "DOC-ARCH-DATABASE",
+    "target": "DOC-ARCHITECTURE",
+    "relation": "depends_on"
+  },
+  {
+    "source": "DOC-GLOSSARY",
+    "target": "DOC-VISION",
+    "relation": "related_to"
+  },
+  {
+    "source": "DOC-GLOSSARY",
+    "target": "DOC-BRD",
+    "relation": "related_to"
+  },
+  {
+    "source": "DOC-GLOSSARY",
+    "target": "DOC-PRD",
+    "relation": "related_to"
+  },
+  {
+    "source": "DOC-STATUS",
+    "target": "DOC-VISION",
+    "relation": "related_to"
+  },
+  {
+    "source": "DOC-STATUS",
+    "target": "DOC-BRD",
+    "relation": "related_to"
+  },
+  {
+    "source": "DOC-STATUS",
+    "target": "DOC-PRD",
+    "relation": "related_to"
+  },
+  {
+    "source": "DOC-STATUS",
+    "target": "DOC-SRS",
+    "relation": "related_to"
+  },
+  {
+    "source": "DOC-STATUS",
+    "target": "DOC-RULES",
+    "relation": "related_to"
+  },
+  {
+    "source": "DOC-STATUS",
+    "target": "DOC-USE-CASES",
+    "relation": "related_to"
+  },
+  {
+    "source": "DOC-STATUS",
+    "target": "DOC-USER-FLOWS",
+    "relation": "related_to"
+  },
+  {
+    "source": "DOC-STATUS",
+    "target": "DOC-ARCHITECTURE",
+    "relation": "related_to"
+  },
+  {
+    "source": "DOC-STATUS",
+    "target": "DOC-ARCH-API",
+    "relation": "related_to"
+  },
+  {
+    "source": "DOC-STATUS",
+    "target": "DOC-ARCH-DATABASE",
+    "relation": "related_to"
+  },
+  {
+    "source": "DOC-STATUS",
+    "target": "DOC-RTM",
+    "relation": "related_to"
+  },
+  {
+    "source": "DOC-BRD",
+    "target": "DOC-VISION",
+    "relation": "depends_on"
+  },
+  {
+    "source": "DOC-PRD",
+    "target": "DOC-BRD",
     "relation": "depends_on"
   },
   {

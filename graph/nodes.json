@@ -1,47 +1,5 @@
 [
   {
-    "id": ".agents/skills/normalize-file/SKILL.md",
-    "label": "SKILL",
-    "type": "document",
-    "path": ".agents/skills/normalize-file/SKILL.md",
-    "description": []
-  },
-  {
-    "id": ".github/ISSUE_TEMPLATE/bug_report.md",
-    "label": "[BUG] ",
-    "type": "document",
-    "path": ".github/ISSUE_TEMPLATE/bug_report.md",
-    "description": ""
-  },
-  {
-    "id": ".github/ISSUE_TEMPLATE/feature_request.md",
-    "label": "[FEATURE] ",
-    "type": "document",
-    "path": ".github/ISSUE_TEMPLATE/feature_request.md",
-    "description": ""
-  },
-  {
-    "id": ".github/pull_request_template.md",
-    "label": "pull_request_template",
-    "type": "document",
-    "path": ".github/pull_request_template.md",
-    "description": ""
-  },
-  {
-    "id": "branching-strategy.md",
-    "label": "branching-strategy",
-    "type": "document",
-    "path": "branching-strategy.md",
-    "description": ""
-  },
-  {
-    "id": "CONTRIBUTING.md",
-    "label": "CONTRIBUTING",
-    "type": "document",
-    "path": "CONTRIBUTING.md",
-    "description": ""
-  },
-  {
     "id": "DOC-RULES",
     "label": "business-rules",
     "type": "business_rule",
@@ -67,14 +25,14 @@
     "label": "user-flows",
     "type": "user_flow",
     "path": "docs/analysis/user-flows.md",
-    "description": []
+    "description": "Sequence diagrams and path flows representing content state transition."
   },
   {
     "id": "DOC-ARCH-API",
     "label": "api",
     "type": "api",
     "path": "docs/architecture/api.md",
-    "description": []
+    "description": "REST API and Server Actions specification for the public portfolio and CMS administration workspace."
   },
   {
     "id": "DOC-ARCHITECTURE",
@@ -193,20 +151,6 @@
     "label": "requirements",
     "type": "document",
     "path": "modules/sample-module/requirements.md",
-    "description": ""
-  },
-  {
-    "id": "README-TECH.md",
-    "label": "README-TECH",
-    "type": "document",
-    "path": "README-TECH.md",
-    "description": ""
-  },
-  {
-    "id": "README.vi.md",
-    "label": "README.vi",
-    "type": "document",
-    "path": "README.vi.md",
     "description": ""
   }
 ]

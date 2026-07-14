@@ -1,14 +1,180 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
-  provider = "prisma-client"
+  provider = "prisma-client-js"
   output   = "../src/generated/prisma"
 }
 
 datasource db {
   provider = "mongodb"
-  url      = env("DATABASE_URL")
+}
+
+// 1. Tài khoản quản trị duy nhất (Admin Account)
+model User {
+  id           String     @id @default(auto()) @map("_id") @db.ObjectId
+  username     String     @unique
+  passwordHash String
+  email        String     @unique
+  name         String?
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  auditLogs    AuditLog[]
+}
+
+// 2. Thông tin cá nhân (Profile Details)
+model Profile {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  title       String
+  bio         String
+  avatarUrl   String?
+  email       String
+  phone       String?
+  address     String?
+  socialLinks Json? // Lưu các mạng xã hội dưới dạng { github, linkedin, facebook, ... }
+  cvUrl       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// 3. Kinh nghiệm làm việc (Experience)
+model Experience {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  company     String
+  role        String
+  description String?
+  startDate   DateTime
+  endDate     DateTime? // Nếu trống có nghĩa là đang làm việc (Present)
+  isCurrent   Boolean   @default(false)
+  techStack   String[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+// 4. Quá trình Học vấn (Education)
+model Education {
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  school       String
+  degree       String
+  fieldOfStudy String?
+  startDate    DateTime
+  endDate      DateTime?
+  grade        String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
+
+// 5. Kỹ năng cá nhân (Skill)
+model Skill {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String   @unique
+  category  String // Ví dụ: "Frontend", "Backend", "Soft Skills"
+  level     Int      @default(1) // Thang điểm từ 1 - 5
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// 6. Chứng chỉ đạt được (Certificate)
+model Certificate {
+  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  name            String
+  issuer          String
+  issueDate       DateTime
+  expirationDate  DateTime?
+  verificationUrl String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+}
+
+// 7. Quản lý Dự án (Project)
+model Project {
+  id                String    @id @default(auto()) @map("_id") @db.ObjectId
+  title             String
+  slug              String    @unique
+  description       String
+  content           String // Hỗ trợ lưu văn bản Markdown
+  thumbnail         String // Link ảnh chính lưu trên CDN (Cloudinary)
+  images            String[] // Link ảnh phụ làm slide carousel
+  techStack         String[] // Danh sách công nghệ sử dụng
+  liveUrl           String?
+  githubUrl         String?
+  startDate         DateTime?
+  endDate           DateTime? // Nếu để trống có nghĩa là đang tiếp diễn (Ongoing)
+  teamSize          Int?
+  role              String? // Vai trò trong dự án (ví dụ: Tech Lead / Frontend)
+  state             String    @default("DRAFT") // DRAFT, PUBLISHED, ARCHIVED
+  publishedAt       DateTime?
+  schedulePublishAt DateTime? // Lên lịch giờ tự động xuất bản
+  scheduleArchiveAt DateTime? // Lên lịch giờ tự động ẩn
+  version           Int       @default(1)
+
+  // Các trường phục vụ tối ưu hóa SEO
+  seoTitle       String?
+  seoDescription String?
+  ogImage        String?
+
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+  versions  ProjectVersion[]
+}
+
+// 8. Lịch sử các phiên bản dự án (Project Version History)
+model ProjectVersion {
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  projectId      String    @db.ObjectId
+  project        Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  version        Int
+  title          String
+  description    String
+  content        String
+  thumbnail      String
+  images         String[]
+  techStack      String[]
+  liveUrl        String?
+  githubUrl      String?
+  startDate      DateTime?
+  endDate        DateTime?
+  teamSize       Int?
+  role           String?
+  seoTitle       String?
+  seoDescription String?
+  ogImage        String?
+  createdAt      DateTime  @default(now())
+}
+
+// 9. Tin nhắn Liên hệ từ Khách (Contact Message)
+model ContactMessage {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  senderName  String
+  senderEmail String
+  subject     String
+  message     String
+  isRead      Boolean  @default(false)
+  status      String   @default("NEW") // NEW, READ, ARCHIVED
+  createdAt   DateTime @default(now())
+}
+
+// 10. Nhật ký hoạt động của Admin (Audit Log)
+model AuditLog {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId      String?  @db.ObjectId
+  user        User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  action      String // Ví dụ: LOGIN, CREATE_PROJECT, UPDATE_PROJECT, RESTORE_VERSION
+  targetType  String // Tên thực thể bị tác động (ví dụ: "Project", "ContactMessage")
+  targetId    String? // ID của thực thể bị tác động
+  description String // Chi tiết hành động thực hiện
+  ipAddress   String? // Địa chỉ IP của máy admin thực hiện thao tác
+  createdAt   DateTime @default(now())
+}
+
+// 11. Đo lường chỉ số tương tác (Analytics Metric)
+model AnalyticsMetric {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  eventType String // PAGE_VIEW, PROJECT_VIEW, CV_DOWNLOAD, CONTACT_SUBMIT
+  eventKey  String? // Ví dụ: slug của dự án, đường dẫn trang truy cập
+  ipHash    String? // Hóa IP để bảo vệ quyền riêng tư nhưng vẫn phân biệt được unique click
+  userAgent String?
+  referrer  String?
+  createdAt DateTime @default(now())
 }

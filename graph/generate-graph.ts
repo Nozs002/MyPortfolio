@@ -37,6 +37,8 @@ const OUTPUT_EDGES = path.resolve(currentDirname, 'edges.json');
 
 const IGNORE_DIRS = new Set([
   '.git',
+  '.github',
+  '.agents',
   '.ai',
   'node_modules',
   'graph',
@@ -45,7 +47,19 @@ const IGNORE_DIRS = new Set([
   'out',
   'build',
 ]);
-const IGNORE_FILES = new Set(['package-lock.json', '.gitignore', 'README.md']);
+const IGNORE_FILES = new Set([
+  'package-lock.json',
+  '.gitignore',
+  'README.md',
+  'readme.md',
+  'README-TECH.md',
+  'readme-tech.md',
+  'README.vi.md',
+  'readme.vi.md',
+  'CONTRIBUTING.md',
+  'contributing.md',
+  'branching-strategy.md',
+]);
 
 const VALID_TYPES = new Set([
   'project',
