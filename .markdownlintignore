@@ -1,0 +1,6 @@
+# Ignore AI Agents skills configuration
+.agents/
+
+# Ignore local builds and dependencies
+.next/
+node_modules/

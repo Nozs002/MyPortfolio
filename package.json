@@ -15,12 +15,12 @@
     "generate-graph": "tsc && node graph/generate-graph.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --write .",
-    "lint:md": "markdownlint \"**/*.md\" --ignore node_modules",
+    "lint:md": "markdownlint \"**/*.md\" --ignore node_modules --ignore .agents",
     "prepare": "husky"
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown",
-    "**/*.md": "markdownlint"
+    "**/*.md": "markdownlint --ignore .agents"
   },
   "keywords": [],
   "author": "",
