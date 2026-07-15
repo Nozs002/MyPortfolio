@@ -1,3 +1,6 @@
+# Thư mục cấu hình cục bộ của AI Agents
+.agents/
+
 node_modules/
 .DS_Store
 dist/
