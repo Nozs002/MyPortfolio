@@ -1,4 +1,5 @@
 import './globals.css';
+import { NotificationProvider } from '../lib/context/NotificationContext';
 
 export const metadata = {
   title: 'Project Template - Premium',
@@ -12,7 +13,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <NotificationProvider>{children}</NotificationProvider>
+      </body>
     </html>
   );
 }

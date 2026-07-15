@@ -173,5 +173,26 @@
     "type": "source",
     "path": "src/lib/prisma.ts",
     "description": "Source Code: prisma.ts"
+  },
+  {
+    "id": "DOC-ARCH-NOTIFICATION",
+    "label": "notification.md",
+    "type": "architecture",
+    "path": "docs/architecture/notification.md",
+    "description": "Tài liệu đặc tả hệ thống thông báo dùng chung."
+  },
+  {
+    "id": "SRC-NOTIFICATION-CONTEXT",
+    "label": "NotificationContext.tsx",
+    "type": "source",
+    "path": "src/lib/context/NotificationContext.tsx",
+    "description": "React Context quản lý trạng thái thông báo toàn cục."
+  },
+  {
+    "id": "SRC-NOTIFICATION-COMP",
+    "label": "Notification.tsx",
+    "type": "source",
+    "path": "src/components/Notification/Notification.tsx",
+    "description": "Component giao diện hiển thị các thẻ thông báo."
   }
 ]

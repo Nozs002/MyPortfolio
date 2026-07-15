@@ -105,7 +105,26 @@ body {
   - Khi tải trang, hệ thống đọc trạng thái từ bộ nhớ và áp dụng class thích hợp
     ngay trước khi render để tránh hiện tượng nháy giao diện (Theme Flash).
 
-### 1.5. Hệ thống Phản hồi Đa màn hình (Responsive Design & Breakpoints)
+### 1.5. Nút Chuyển đổi Ngôn ngữ (Language Switcher)
+
+- **Vị trí hiển thị:** Cố định ở góc trên bên phải màn hình, nằm bên cạnh Nút
+  Chuyển đổi Giao diện (trên Navigation Bar ở Public Website và Header ở CMS).
+- **Trạng thái ngôn ngữ:** Hỗ trợ song ngữ **Tiếng Anh (EN)** và **Tiếng Việt
+  (VI)**.
+- **Cách thức hoạt động:**
+  - Hiển thị dưới dạng nút chuyển đổi nhỏ gọn (Toggle Button) hoặc Menu thả
+    xuống (Dropdown) với biểu tượng quả địa cầu (`Globe` icon) đi kèm nhãn ngôn
+    ngữ hiện tại (`VI` hoặc `EN`).
+  - Khi người dùng click, hệ thống cập nhật locale/state ngôn ngữ toàn cục và
+    chuyển đổi văn bản tương ứng của các thành phần giao diện mà không cần tải
+    lại toàn trang (nếu sử dụng Client-side translation) hoặc điều hướng sang
+    route ngôn ngữ tương ứng.
+- **Lưu trữ trạng thái (Persistence):**
+  - Lưu trạng thái ngôn ngữ đã chọn vào `localStorage` (ví dụ:
+    `locale: 'vi' | 'en'`) hoặc Cookie để áp dụng tự động cho các phiên làm việc
+    sau.
+
+### 1.6. Hệ thống Phản hồi Đa màn hình (Responsive Design & Breakpoints)
 
 Để mang lại trải nghiệm đồng nhất trên cả màn hình lớn (Desktop, Ultra-wide) và
 màn hình nhỏ (Smartphones, Tablets), giao diện phải tuân thủ các quy tắc phản

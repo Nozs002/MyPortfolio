@@ -8,6 +8,7 @@ generator client {
 
 datasource db {
   provider = "mongodb"
+  url      = env("DATABASE_URL")
 }
 
 // 1. Tài khoản quản trị duy nhất (Admin Account)

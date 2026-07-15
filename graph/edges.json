@@ -153,5 +153,20 @@
     "source": "SRC-AUDIT-UTIL",
     "target": "SRC-PRISMA-CLIENT",
     "relation": "uses"
+  },
+  {
+    "source": "DOC-ARCH-NOTIFICATION",
+    "target": "DOC-SRS",
+    "relation": "depends_on"
+  },
+  {
+    "source": "SRC-NOTIFICATION-CONTEXT",
+    "target": "DOC-ARCH-NOTIFICATION",
+    "relation": "implements"
+  },
+  {
+    "source": "SRC-NOTIFICATION-CONTEXT",
+    "target": "SRC-NOTIFICATION-COMP",
+    "relation": "uses"
   }
 ]
