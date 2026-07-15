@@ -185,10 +185,12 @@ NextAuth.js.
 
 - **API Endpoint:** `POST /api/chat`
 - **Tác nhân:** Visitor / Recruiter (Công khai, không cần đăng nhập).
-- **Mục đích:** Gửi lịch sử trò chuyện và câu hỏi hiện tại để nhận phản hồi từ AI.
+- **Mục đích:** Gửi lịch sử trò chuyện và câu hỏi hiện tại để nhận phản hồi từ
+  AI.
 - **Request Body:**
   - Định dạng: `application/json`
   - Tham số:
+
     ```json
     {
       "messages": [
@@ -199,18 +201,22 @@ NextAuth.js.
       ]
     }
     ```
+
 - **Response:**
   - `200 OK`:
-    - Header: `Content-Type: text/plain; charset=utf-8` (hoặc `text/event-stream` nếu sử dụng Server-Sent Events).
-    - Body: Luồng ký tự text (Streamed Text Tokens) được trả về trực tiếp từ mô hình Gemini.
+    - Header: `Content-Type: text/plain; charset=utf-8` (hoặc
+      `text/event-stream` nếu sử dụng Server-Sent Events).
+    - Body: Luồng ký tự text (Streamed Text Tokens) được trả về trực tiếp từ mô
+      hình Gemini.
   - `429 Too Many Requests`:
     - Trả về khi IP của khách truy cập vượt quá giới hạn 10 lượt gọi/phút.
     - Body:
+
       ```json
       {
         "error": "Too many requests. Please try again after 1 minute."
       }
       ```
+
   - `500 Internal Server Error`:
     - Trả về khi gặp sự cố cấu hình Gemini API Key hoặc sự cố kết nối LLM.
-
