@@ -229,11 +229,16 @@ function setupEventListeners() {
 // Load Nodes and Edges
 async function fetchGraphData() {
   try {
-    const nodesResponse = await fetch('nodes.json');
-    allNodes = await nodesResponse.json();
+    if (window.graphNodes && window.graphEdges) {
+      allNodes = window.graphNodes;
+      allEdges = window.graphEdges;
+    } else {
+      const nodesResponse = await fetch('nodes.json');
+      allNodes = await nodesResponse.json();
 
-    const edgesResponse = await fetch('edges.json');
-    allEdges = await edgesResponse.json();
+      const edgesResponse = await fetch('edges.json');
+      allEdges = await edgesResponse.json();
+    }
 
     buildGraph();
     updateStats();
@@ -250,6 +255,7 @@ async function fetchGraphData() {
       <i class="fa-solid fa-triangle-exclamation" style="font-size: 40px; color: #ef4444;"></i>
       <p style="margin-top: 10px; color: #ef4444; font-weight: 600;">Failed to load graph data!</p>
       <p style="font-size: 12px; color: #9ca3af; max-width: 300px; text-align: center; line-height: 1.4; margin-top: 5px;">
+        Error: ${error.message || error}<br>
         Please make sure nodes.json and edges.json are populated inside the graph folder.
       </p>
     `;

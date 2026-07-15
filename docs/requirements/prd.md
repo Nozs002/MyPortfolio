@@ -245,6 +245,18 @@ thống để đảm bảo an toàn dữ liệu:
       thống kiểm tra token hợp lệ và cho phép nhập mật khẩu mới.
     - Hành động khôi phục này được ghi vết an toàn trong Audit Log.
 
+### 2.8. Phân hệ Trợ lý ảo AI (AI Portfolio Assistant)
+
+- **Mô tả:** Cung cấp khung trò chuyện thông minh (Floating Chat Widget) ngoài website công khai để nhà tuyển dụng và khách truy cập tự do hỏi đáp thông tin năng lực, kinh nghiệm, kỹ năng và dự án của chủ sở hữu.
+- **Tính năng chính:**
+  - **Giao diện Chatbot Nổi (Floating Widget):** Thu nhỏ thành bong bóng chat (FAB) ở góc phải dưới; click vào mở ra hộp thoại chat tiện lợi.
+  - **Tích hợp mô hình ngôn ngữ lớn (LLM):** Sử dụng thư viện Vercel AI SDK kết nối trực tiếp với Google Gemini API (model `gemini-1.5-flash`).
+  - **Nạp dữ liệu ngữ cảnh động (Dynamic Context):**
+    - Khi nhận câu hỏi từ Client, Server tự động truy vấn MongoDB Atlas để lấy các thông tin đã xuất bản: Profile cá nhân, Kinh nghiệm làm việc, Kỹ năng, Học vấn, Chứng chỉ, các Dự án công khai.
+    - Dữ liệu này được cấu trúc thành System Prompt gửi làm ngữ cảnh gốc cho mô hình Gemini, đảm bảo AI trả lời trung thực và chính xác về ứng viên.
+  - **Không lưu lịch sử trên Server:** Để tối ưu hóa tài nguyên cơ sở dữ liệu và bảo vệ quyền riêng tư, lịch sử hội thoại chỉ được duy trì trong bộ nhớ tạm thời của React state trên trình duyệt của khách hàng.
+  - **Giới hạn lưu lượng (Rate Limiting):** Áp dụng giới hạn tối đa 10 lượt chat/phút trên mỗi địa chỉ IP để chống spam và phá hoại hạn mức API key miễn phí.
+
 ## 3. Yêu Cầu Phi Chức Năng (Non-Functional Requirements)
 
 ### 3.1. Bảo mật & Xác thực (Security & Authentication)
@@ -284,7 +296,20 @@ thống để đảm bảo an toàn dữ liệu:
 
 ## 4. Giao Diện Người Dùng (User Interface)
 
-> [!NOTE] **EN:** Describe UI/UX expectations or link to design mockups. **VI:**
-> Mô tả kỳ vọng về UI/UX hoặc dẫn link tới bản thiết kế.
+### 4.1. Kiến trúc Trang & Định tuyến (Sitemap & Page Structure)
 
-- [Link to Figma / Design]
+Giao diện hệ thống được chia làm hai khu vực hoàn toàn độc lập:
+
+#### A. Khu vực Công khai (Public Facing Website)
+- **Trang chủ (`/`):** Thiết kế dưới dạng **dải trang dài cuộn (Single-page scroll)**. Tích hợp tương tác 3D WebGL (React Three Fiber) để tăng trải nghiệm Premium. Các phần nội dung hiển thị tuần tự: Hero -> Profile/About -> Experience -> Education & Certifications -> Skills -> Featured Projects -> Contact & CV Download.
+- **Trang chi tiết dự án (`/projects/[slug]`):** Trang độc lập hiển thị thông tin chi tiết của từng dự án (ngày thực hiện, vai trò, quy mô nhóm, techstack và nội dung Markdown của dự án). Hỗ trợ Dynamic SEO Metadata cho từng trang.
+- **Trang chi tiết bài viết blog (`/blog/[slug]`):** Trang độc lập hiển thị nội dung bài viết chia sẻ công nghệ (được triển khai ở Phase 2).
+
+#### B. Khu vực Quản trị (CMS Workspace - Admin Area)
+- **Trang Đăng nhập (`/admin/login`):** Giao diện đăng nhập bảo mật (Credentials & Google OAuth).
+- **Trang Dashboard quản trị (`/dashboard`):** Bố cục Dashboard Shell gồm thanh điều hướng (Sidebar) bên trái và khu vực hiển thị dữ liệu bên phải.
+- **Các phân hệ quản lý dữ liệu:** `/dashboard/profile`, `/dashboard/projects`, `/dashboard/blog`, `/dashboard/contacts`, `/dashboard/audit-logs`, `/dashboard/analytics`.
+
+### 4.2. Nguyên tắc Thiết kế & Hướng dẫn Giao diện (UI Guidelines)
+- Đặc tả chi tiết về mã màu (Color Palette), kiểu chữ (Typography), lưới (Grid Layout), linh kiện giao diện (UI Components), Glassmorphism và hiệu ứng chuyển động (Animations) được tài liệu hóa chi tiết tại [ui-guidelines.md](file:///d:/Workspace/Projects/my-portfolio/docs/ui/ui-guidelines.md).
+

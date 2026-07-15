@@ -123,5 +123,35 @@
     "source": "DOC-RTM",
     "target": "DOC-BRD",
     "relation": "depends_on"
+  },
+  {
+    "source": "DOC-SRS",
+    "target": "SRC-NEXTAUTH-HANDLER",
+    "relation": "implements"
+  },
+  {
+    "source": "SRC-NEXTAUTH-HANDLER",
+    "target": "DOC-RULES",
+    "relation": "references"
+  },
+  {
+    "source": "SRC-NEXTAUTH-HANDLER",
+    "target": "SRC-AUDIT-UTIL",
+    "relation": "uses"
+  },
+  {
+    "source": "DOC-BRD",
+    "target": "SRC-AUDIT-UTIL",
+    "relation": "implements"
+  },
+  {
+    "source": "SRC-AUDIT-UTIL",
+    "target": "DOC-RULES",
+    "relation": "references"
+  },
+  {
+    "source": "SRC-AUDIT-UTIL",
+    "target": "SRC-PRISMA-CLIENT",
+    "relation": "uses"
   }
 ]

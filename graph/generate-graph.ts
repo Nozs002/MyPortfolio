@@ -496,6 +496,11 @@ function main() {
   console.log(`Writing ${edges.length} edges to: ${OUTPUT_EDGES}`);
   fs.writeFileSync(OUTPUT_EDGES, JSON.stringify(edges, null, 2), 'utf-8');
 
+  const OUTPUT_DATA_JS = path.resolve(currentDirname, 'data.js');
+  console.log(`Writing static js data to: ${OUTPUT_DATA_JS}`);
+  const dataJsContent = `window.graphNodes = ${JSON.stringify(finalNodes, null, 2)};\nwindow.graphEdges = ${JSON.stringify(edges, null, 2)};\n`;
+  fs.writeFileSync(OUTPUT_DATA_JS, dataJsContent, 'utf-8');
+
   console.log(
     'Knowledge Graph generation completed successfully under Schema v1.0!',
   );
