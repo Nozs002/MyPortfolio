@@ -152,18 +152,28 @@ như Cloudinary (lưu ảnh), Resend (gửi email).
 
 ### FR-10: Trợ lý ảo AI Portfolio (AI Chat Assistant)
 
-- **Mô tả:** Hệ thống cung cấp dịch vụ trò chuyện trực tuyến tích hợp trí tuệ nhân tạo để trả lời nhanh về kỹ năng, kinh nghiệm và dự án của chủ sở hữu.
+- **Mô tả:** Hệ thống cung cấp dịch vụ trò chuyện trực tuyến tích hợp trí tuệ
+  nhân tạo để trả lời nhanh về kỹ năng, kinh nghiệm và dự án của chủ sở hữu.
 - **Yêu cầu chi tiết:**
-  - **Dầu vào (Input):** Câu hỏi hiện tại của khách hàng (`prompt` dạng chuỗi) và mảng lịch sử hội thoại hiện tại (`messages` dạng mảng đối tượng `{ role, content }`).
-  - **Đầu ra (Output):** Luồng dữ liệu chữ (Text Stream - Server-Sent Events) hiển thị phản hồi tức thì từ AI.
+  - **Dầu vào (Input):** Câu hỏi hiện tại của khách hàng (`prompt` dạng chuỗi)
+    và mảng lịch sử hội thoại hiện tại (`messages` dạng mảng đối tượng
+    `{ role, content }`).
+  - **Đầu ra (Output):** Luồng dữ liệu chữ (Text Stream - Server-Sent Events)
+    hiển thị phản hồi tức thì từ AI.
   - **Luồng xử lý phía Máy chủ:**
-    1. **Kiểm tra giới hạn tần suất:** Hệ thống lấy địa chỉ IP của Client thông qua header `x-forwarded-for`. Nếu số yêu cầu vượt quá **10 yêu cầu/phút/IP**, trả về mã lỗi `429 Too Many Requests`.
-    2. **Truy vấn Dữ liệu ngữ cảnh (Context Collection):** Thực hiện đọc đồng thời từ database:
+    1. **Kiểm tra giới hạn tần suất:** Hệ thống lấy địa chỉ IP của Client thông
+       qua header `x-forwarded-for`. Nếu số yêu cầu vượt quá **10 yêu
+       cầu/phút/IP**, trả về mã lỗi `429 Too Many Requests`.
+    2. **Truy vấn Dữ liệu ngữ cảnh (Context Collection):** Thực hiện đọc đồng
+       thời từ database:
        - Bản ghi `Profile` của ứng viên.
        - Danh sách `Experience`, `Skill`, `Education`, `Certificate`.
        - Danh sách các dự án (`Project`) có trạng thái `PUBLISHED`.
-    3. **Tạo Prompt hệ thống (System Prompt):** Gom dữ liệu trên thành một tập văn bản ngắn gọn làm ngữ cảnh gốc.
-    4. **Gọi API ngôn ngữ lớn (Gemini Integration):** Sử dụng hàm `streamText` của Vercel AI SDK kết hợp với mô hình `gemini-1.5-flash` của Google AI Studio, gửi kèm System Prompt ngữ cảnh và lịch sử trò chuyện.
+    3. **Tạo Prompt hệ thống (System Prompt):** Gom dữ liệu trên thành một tập
+       văn bản ngắn gọn làm ngữ cảnh gốc.
+    4. **Gọi API ngôn ngữ lớn (Gemini Integration):** Sử dụng hàm `streamText`
+       của Vercel AI SDK kết hợp với mô hình `gemini-1.5-flash` của Google AI
+       Studio, gửi kèm System Prompt ngữ cảnh và lịch sử trò chuyện.
     5. **Truyền luồng (Streaming):** Trả về luồng phản hồi trực tiếp cho Client.
   - **Ràng buộc lưu trữ:** Hội thoại không được lưu trữ vào MongoDB Atlas.
 

@@ -126,34 +126,6 @@
     "description": []
   },
   {
-    "id": "modules/sample-module/api.md",
-    "label": "api",
-    "type": "document",
-    "path": "modules/sample-module/api.md",
-    "description": ""
-  },
-  {
-    "id": "modules/sample-module/flow.md",
-    "label": "flow",
-    "type": "document",
-    "path": "modules/sample-module/flow.md",
-    "description": ""
-  },
-  {
-    "id": "modules/sample-module/overview.md",
-    "label": "overview",
-    "type": "document",
-    "path": "modules/sample-module/overview.md",
-    "description": ""
-  },
-  {
-    "id": "modules/sample-module/requirements.md",
-    "label": "requirements",
-    "type": "document",
-    "path": "modules/sample-module/requirements.md",
-    "description": ""
-  },
-  {
     "id": "SRC-NEXTAUTH-HANDLER",
     "label": "route.ts",
     "type": "source",
