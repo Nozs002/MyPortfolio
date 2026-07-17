@@ -1,11 +1,10 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { useNotification } from '../lib/context/NotificationContext';
+import { toast } from 'sonner';
 import styles from './page.module.css';
 
 export default function HomePage() {
-  const { showNotification } = useNotification();
   const [theme, setTheme] = useState<'light' | 'dark'>('dark');
 
   // Khởi động đồng bộ theme vào html tag
@@ -23,9 +22,7 @@ export default function HomePage() {
   const toggleTheme = () => {
     const nextTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(nextTheme);
-    showNotification({
-      type: 'info',
-      message: 'Chuyển đổi chủ đề',
+    toast.info('Chuyển đổi chủ đề', {
       description: `Đã kích hoạt chế độ giao diện ${nextTheme === 'dark' ? 'Tối (Dark)' : 'Sáng (Light)'}.`,
       duration: 3000,
     });
@@ -55,9 +52,8 @@ export default function HomePage() {
       },
     };
 
-    showNotification({
-      type,
-      message: messages[type].message,
+    const toastFn = toast[type] || toast;
+    toastFn(messages[type].message, {
       description: messages[type].description,
       duration: 4500,
     });
