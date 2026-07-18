@@ -35,6 +35,11 @@
     "relation": "depends_on"
   },
   {
+    "source": "DOC-ARCH-NOTIFICATION",
+    "target": "DOC-SRS",
+    "relation": "depends_on"
+  },
+  {
     "source": "DOC-GLOSSARY",
     "target": "DOC-VISION",
     "relation": "related_to"
@@ -155,18 +160,23 @@
     "relation": "uses"
   },
   {
-    "source": "DOC-ARCH-NOTIFICATION",
-    "target": "DOC-SRS",
-    "relation": "depends_on"
-  },
-  {
-    "source": "SRC-NOTIFICATION-CONTEXT",
-    "target": "DOC-ARCH-NOTIFICATION",
+    "source": "DOC-PRD",
+    "target": "SRC-AUTH-SHIELD",
     "relation": "implements"
   },
   {
-    "source": "SRC-NOTIFICATION-CONTEXT",
-    "target": "SRC-NOTIFICATION-COMP",
-    "relation": "uses"
+    "source": "SRC-AUTH-SHIELD",
+    "target": "DOC-RULES",
+    "relation": "references"
+  },
+  {
+    "source": "DOC-PRD",
+    "target": "SRC-MIDDLEWARE",
+    "relation": "implements"
+  },
+  {
+    "source": "SRC-MIDDLEWARE",
+    "target": "DOC-RULES",
+    "relation": "references"
   }
 ]

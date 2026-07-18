@@ -49,6 +49,13 @@
     "description": ""
   },
   {
+    "id": "DOC-ARCH-NOTIFICATION",
+    "label": "notification",
+    "type": "architecture",
+    "path": "docs/architecture/notification.md",
+    "description": "Design specification for the global notification (toast) system."
+  },
+  {
     "id": "DOC-CHANGES",
     "label": "changes",
     "type": "document",
@@ -126,6 +133,34 @@
     "description": []
   },
   {
+    "id": "modules/admin/login/api.md",
+    "label": "api",
+    "type": "document",
+    "path": "modules/admin/login/api.md",
+    "description": ""
+  },
+  {
+    "id": "modules/admin/login/flow.md",
+    "label": "flow",
+    "type": "document",
+    "path": "modules/admin/login/flow.md",
+    "description": ""
+  },
+  {
+    "id": "modules/admin/login/overview.md",
+    "label": "overview",
+    "type": "document",
+    "path": "modules/admin/login/overview.md",
+    "description": ""
+  },
+  {
+    "id": "modules/admin/login/requirements.md",
+    "label": "requirements",
+    "type": "document",
+    "path": "modules/admin/login/requirements.md",
+    "description": ""
+  },
+  {
     "id": "modules/sample-module/api.md",
     "label": "api",
     "type": "document",
@@ -168,6 +203,13 @@
     "description": "Source Code: audit.ts"
   },
   {
+    "id": "SRC-AUTH-SHIELD",
+    "label": "auth-shield.ts",
+    "type": "source",
+    "path": "src/lib/auth-shield.ts",
+    "description": "Source Code: auth-shield.ts"
+  },
+  {
     "id": "SRC-PRISMA-CLIENT",
     "label": "prisma.ts",
     "type": "source",
@@ -175,24 +217,10 @@
     "description": "Source Code: prisma.ts"
   },
   {
-    "id": "DOC-ARCH-NOTIFICATION",
-    "label": "notification.md",
-    "type": "architecture",
-    "path": "docs/architecture/notification.md",
-    "description": "Tài liệu đặc tả hệ thống thông báo dùng chung."
-  },
-  {
-    "id": "SRC-NOTIFICATION-CONTEXT",
-    "label": "NotificationContext.tsx",
+    "id": "SRC-MIDDLEWARE",
+    "label": "middleware.ts",
     "type": "source",
-    "path": "src/lib/context/NotificationContext.tsx",
-    "description": "React Context quản lý trạng thái thông báo toàn cục."
-  },
-  {
-    "id": "SRC-NOTIFICATION-COMP",
-    "label": "Notification.tsx",
-    "type": "source",
-    "path": "src/components/Notification/Notification.tsx",
-    "description": "Component giao diện hiển thị các thẻ thông báo."
+    "path": "src/middleware.ts",
+    "description": "Source Code: middleware.ts"
   }
 ]
