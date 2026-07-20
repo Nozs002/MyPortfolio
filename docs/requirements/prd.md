@@ -226,15 +226,18 @@ thống để đảm bảo an toàn dữ liệu:
 
 ### 2.7. Phân hệ Quản lý Tài khoản & Mật khẩu (Account & Password Management)
 
-- **Mô tả:** Cho phép Admin đổi mật khẩu tài khoản trong trang quản trị, hoặc
-  yêu cầu khôi phục lại mật khẩu thông qua địa chỉ email đăng ký nếu quên mật
-  khẩu.
+- **Mô tả:** Cho phép Admin đổi mật khẩu tài khoản an toàn trong trang quản trị,
+  hoặc yêu cầu khôi phục lại mật khẩu thông qua địa chỉ email đăng ký nếu quên
+  mật khẩu.
 - **Tính năng chính:**
   - **Đổi mật khẩu (Change Password):** Form đổi mật khẩu trong Dashboard yêu
-    cầu nhập mật khẩu hiện tại, mật khẩu mới (tối thiểu 8 ký tự), và nhập lại
-    mật khẩu mới để xác nhận. Sau khi thành công, hệ thống mã hóa mật khẩu mới
-    ghi đè DB, hủy session hiện tại bắt đăng nhập lại, gửi email cảnh báo bảo
-    mật và tạo bản ghi Audit Log.
+    cầu nhập cả 3 trường (`currentPassword`, `newPassword`, `confirmPassword`).
+    Sau khi kiểm tra Rate Limit (khóa 30 phút nếu sai 5 lần/15 phút), hệ thống
+    mở Database Transaction mã hóa mật khẩu mới (bcrypt), cập nhật DB và ghi
+    Audit Log đồng thời. Tiếp đó, hệ thống thực hiện hủy toàn bộ các phiên làm
+    việc đang tồn tại trên tất cả thiết bị (Global Sign-out) và gửi một Email
+    cảnh báo bảo mật chứa chi tiết thời gian, địa chỉ IP, trình duyệt và loại
+    thiết bị.
   - **Quên mật khẩu / Khôi phục mật khẩu (Password Recovery):**
     - Khách truy cập vào route `/admin/forgot-password`, điền địa chỉ email đã
       đăng ký của Admin.

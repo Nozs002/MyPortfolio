@@ -49,6 +49,14 @@ window.graphNodes = [
     description: '',
   },
   {
+    id: 'DOC-ARCH-NOTIFICATION',
+    label: 'notification',
+    type: 'architecture',
+    path: 'docs/architecture/notification.md',
+    description:
+      'Design specification for the global notification (toast) system.',
+  },
+  {
     id: 'DOC-CHANGES',
     label: 'changes',
     type: 'document',
@@ -127,6 +135,90 @@ window.graphNodes = [
     description: [],
   },
   {
+    id: 'modules/admin/change-password/api.md',
+    label: 'api',
+    type: 'document',
+    path: 'modules/admin/change-password/api.md',
+    description: '',
+  },
+  {
+    id: 'modules/admin/change-password/flow.md',
+    label: 'flow',
+    type: 'document',
+    path: 'modules/admin/change-password/flow.md',
+    description: '',
+  },
+  {
+    id: 'modules/admin/change-password/overview.md',
+    label: 'overview',
+    type: 'document',
+    path: 'modules/admin/change-password/overview.md',
+    description: '',
+  },
+  {
+    id: 'modules/admin/change-password/requirements.md',
+    label: 'requirements',
+    type: 'document',
+    path: 'modules/admin/change-password/requirements.md',
+    description: '',
+  },
+  {
+    id: 'modules/admin/login/api.md',
+    label: 'api',
+    type: 'document',
+    path: 'modules/admin/login/api.md',
+    description: '',
+  },
+  {
+    id: 'modules/admin/login/flow.md',
+    label: 'flow',
+    type: 'document',
+    path: 'modules/admin/login/flow.md',
+    description: '',
+  },
+  {
+    id: 'modules/admin/login/overview.md',
+    label: 'overview',
+    type: 'document',
+    path: 'modules/admin/login/overview.md',
+    description: '',
+  },
+  {
+    id: 'modules/admin/login/requirements.md',
+    label: 'requirements',
+    type: 'document',
+    path: 'modules/admin/login/requirements.md',
+    description: '',
+  },
+  {
+    id: 'modules/sample-module/api.md',
+    label: 'api',
+    type: 'document',
+    path: 'modules/sample-module/api.md',
+    description: '',
+  },
+  {
+    id: 'modules/sample-module/flow.md',
+    label: 'flow',
+    type: 'document',
+    path: 'modules/sample-module/flow.md',
+    description: '',
+  },
+  {
+    id: 'modules/sample-module/overview.md',
+    label: 'overview',
+    type: 'document',
+    path: 'modules/sample-module/overview.md',
+    description: '',
+  },
+  {
+    id: 'modules/sample-module/requirements.md',
+    label: 'requirements',
+    type: 'document',
+    path: 'modules/sample-module/requirements.md',
+    description: '',
+  },
+  {
     id: 'SRC-NEXTAUTH-HANDLER',
     label: 'route.ts',
     type: 'source',
@@ -141,11 +233,25 @@ window.graphNodes = [
     description: 'Source Code: audit.ts',
   },
   {
+    id: 'SRC-AUTH-SHIELD',
+    label: 'auth-shield.ts',
+    type: 'source',
+    path: 'src/lib/auth-shield.ts',
+    description: 'Source Code: auth-shield.ts',
+  },
+  {
     id: 'SRC-PRISMA-CLIENT',
     label: 'prisma.ts',
     type: 'source',
     path: 'src/lib/prisma.ts',
     description: 'Source Code: prisma.ts',
+  },
+  {
+    id: 'SRC-MIDDLEWARE',
+    label: 'middleware.ts',
+    type: 'source',
+    path: 'src/middleware.ts',
+    description: 'Source Code: middleware.ts',
   },
 ];
 window.graphEdges = [
@@ -182,6 +288,11 @@ window.graphEdges = [
   {
     source: 'DOC-ARCH-DATABASE',
     target: 'DOC-ARCHITECTURE',
+    relation: 'depends_on',
+  },
+  {
+    source: 'DOC-ARCH-NOTIFICATION',
+    target: 'DOC-SRS',
     relation: 'depends_on',
   },
   {
@@ -303,5 +414,25 @@ window.graphEdges = [
     source: 'SRC-AUDIT-UTIL',
     target: 'SRC-PRISMA-CLIENT',
     relation: 'uses',
+  },
+  {
+    source: 'DOC-PRD',
+    target: 'SRC-AUTH-SHIELD',
+    relation: 'implements',
+  },
+  {
+    source: 'SRC-AUTH-SHIELD',
+    target: 'DOC-RULES',
+    relation: 'references',
+  },
+  {
+    source: 'DOC-PRD',
+    target: 'SRC-MIDDLEWARE',
+    relation: 'implements',
+  },
+  {
+    source: 'SRC-MIDDLEWARE',
+    target: 'DOC-RULES',
+    relation: 'references',
   },
 ];
