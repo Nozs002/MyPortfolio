@@ -133,6 +133,34 @@
     "description": []
   },
   {
+    "id": "modules/admin/change-password/api.md",
+    "label": "api",
+    "type": "document",
+    "path": "modules/admin/change-password/api.md",
+    "description": ""
+  },
+  {
+    "id": "modules/admin/change-password/flow.md",
+    "label": "flow",
+    "type": "document",
+    "path": "modules/admin/change-password/flow.md",
+    "description": ""
+  },
+  {
+    "id": "modules/admin/change-password/overview.md",
+    "label": "overview",
+    "type": "document",
+    "path": "modules/admin/change-password/overview.md",
+    "description": ""
+  },
+  {
+    "id": "modules/admin/change-password/requirements.md",
+    "label": "requirements",
+    "type": "document",
+    "path": "modules/admin/change-password/requirements.md",
+    "description": ""
+  },
+  {
     "id": "modules/admin/login/api.md",
     "label": "api",
     "type": "document",
@@ -158,66 +186,6 @@
     "label": "requirements",
     "type": "document",
     "path": "modules/admin/login/requirements.md",
-    "description": ""
-  },
-  {
-    "id": "modules/admin/password-recovery/api.md",
-    "label": "api",
-    "type": "document",
-    "module": "MOD-ADMIN-RECOVERY",
-    "path": "modules/admin/password-recovery/api.md",
-    "description": ""
-  },
-  {
-    "id": "modules/admin/password-recovery/flow.md",
-    "label": "flow",
-    "type": "document",
-    "module": "MOD-ADMIN-RECOVERY",
-    "path": "modules/admin/password-recovery/flow.md",
-    "description": ""
-  },
-  {
-    "id": "modules/admin/password-recovery/overview.md",
-    "label": "overview",
-    "type": "document",
-    "module": "MOD-ADMIN-RECOVERY",
-    "path": "modules/admin/password-recovery/overview.md",
-    "description": ""
-  },
-  {
-    "id": "modules/admin/password-recovery/requirements.md",
-    "label": "requirements",
-    "type": "document",
-    "module": "MOD-ADMIN-RECOVERY",
-    "path": "modules/admin/password-recovery/requirements.md",
-    "description": ""
-  },
-  {
-    "id": "modules/sample-module/api.md",
-    "label": "api",
-    "type": "document",
-    "path": "modules/sample-module/api.md",
-    "description": ""
-  },
-  {
-    "id": "modules/sample-module/flow.md",
-    "label": "flow",
-    "type": "document",
-    "path": "modules/sample-module/flow.md",
-    "description": ""
-  },
-  {
-    "id": "modules/sample-module/overview.md",
-    "label": "overview",
-    "type": "document",
-    "path": "modules/sample-module/overview.md",
-    "description": ""
-  },
-  {
-    "id": "modules/sample-module/requirements.md",
-    "label": "requirements",
-    "type": "document",
-    "path": "modules/sample-module/requirements.md",
     "description": ""
   },
   {

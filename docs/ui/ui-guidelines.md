@@ -274,17 +274,35 @@ hiện trên tất cả các trang của khu vực công khai (Public facing pag
 Giao diện quản trị hướng tới sự thực dụng, rõ ràng và tập trung tối đa vào hiệu
 suất biên tập dữ liệu.
 
-### 3.1. Bố cục Vỏ Dashboard (Dashboard Shell)
+### 3.1. Bố cục Vỏ Dashboard (Top Navbar Shell Layout - Option A)
 
-- **Thanh điều hướng bên cạnh (Sidebar Navigation):**
-  - Cố định bên trái màn hình đối với desktop. Có thể thu gọn hoặc mở rộng dưới
-    dạng menu ẩn (Hamburger) đối với mobile.
-  - Chứa thông tin Admin thu nhỏ ở chân trang và liên kết đăng xuất.
+Hệ thống CMS áp dụng mô hình **Single Top Navbar Layout (Thanh điều hướng ngang
+trên cùng duy nhất)**. Thiết kế này loại bỏ hoàn toàn Sidebar để tối ưu hóa 100%
+không gian màn hình theo chiều ngang cho việc hiển thị bảng dữ liệu, biểu đồ và
+bộ soạn thảo Markdown full-width.
+
+- **Thanh điều hướng ngang trên cùng (Top Navigation Bar):**
+  - Định vị cố định ở phía trên cùng màn hình
+    (`position: sticky; top: 0; z-index: 50;`).
+  - Áp dụng hiệu ứng kính mờ `.glass-panel` mượt mà hỗ trợ cả Light/Dark Mode.
+  - **Bên trái (Brand):** Logo / Tiêu đề "MyPortfolio CMS".
+  - **Ở giữa (Navigation Tabs):** Các đường dẫn chuyển phân hệ: 📊 _Dashboard_,
+    📁 _Dự án_, 👤 _Hồ sơ & CV_, 📥 _Hộp thư (kèm Badge đếm số tin nhắn mới)_,
+    📜 _Audit Log_, 💾 _Sao lưu_.
+  - **Bên phải (Control Center & User Profile):**
+    - Bộ chuyển đổi ngôn ngữ (Language Switcher: `VI/EN`).
+    - Nút chuyển đổi giao diện (Theme Switcher: `Sun/Moon` icon).
+    - Menu thả xuống người dùng (User Profile Dropdown): Avatar Admin, liên kết
+      _Cài đặt & Đổi mật khẩu_, liên kết _Xem Website công khai_ và nút _Đăng
+      xuất (Sign Out)_.
+  - **Trên thiết bị Di động/Máy tính bảng:** Tự động co gọn các Tab menu vào nút
+    bấm Hamburger Menu mở ra Dropdown Mega Menu tiện lợi.
 - **Khu vực hiển thị nội dung chính (Main Content Area):**
-  - Nằm bên phải Sidebar, sử dụng khoảng đệm lớn (`padding: 2rem`) để tạo khoảng
-    thở cho mắt.
-  - Phía trên cùng luôn có thanh tiêu đề trang (Header) hiển thị Breadcrumbs
-    (Đường dẫn thư mục) và các nút thao tác nhanh (ví dụ: nút "Tạo mới").
+  - Chiếm 100% chiều rộng màn hình (Full Width), sử dụng khoảng đệm chuẩn
+    (`padding: 2rem` trên Desktop, `1rem` trên Mobile) tạo khoảng thở cho giao
+    diện.
+  - Phía trên cùng nội dung có tiêu đề trang, Breadcrumb và các nút thao tác
+    nhanh (ví dụ: nút "+ Tạo mới Dự án").
 
 ### 3.2. Form Soạn thảo nội dung (Project/Blog Editor Form)
 

@@ -187,3 +187,57 @@ sequenceDiagram
         ResetPage-->>Admin: Hiển thị thông báo lỗi
     end
 ```
+
+---
+
+## 5. Đổi Mật khẩu trong Dashboard (Change Password Flow)
+
+Quy trình thay đổi mật khẩu an toàn trực tiếp từ giao diện Cài đặt Quản trị
+trong CMS:
+
+```mermaid
+sequenceDiagram
+    actor Admin as Portfolio Owner (Dashboard)
+    participant UI as Change Password Form (/admin/dashboard/settings)
+    participant Action as Server Action (changePasswordAction)
+    participant Limiter as Rate Limiter (5 fails / 15m)
+    participant DB as MongoDB Atlas (Prisma Transaction)
+    participant Email as Resend Email Service
+    participant Login as Login Page (/admin/login)
+
+    Admin->>UI: Điền Mật khẩu hiện tại, Mật khẩu mới & Xác nhận mật khẩu
+    Admin->>UI: Nhấn nút "Lưu mật khẩu mới"
+
+    UI->>Action: Gửi dữ liệu qua changePasswordAction()
+
+    Action->>Limiter: Kiểm tra trạng thái khóa (Lockout 30 phút)
+
+    alt Tài khoản không bị khóa Rate Limit
+        Action->>DB: Đối chiếu currentPassword với passwordHash bằng bcrypt.compare
+
+        alt Mật khẩu hiện tại đúng & Mật khẩu mới hợp lệ
+            rect rgb(235, 245, 255)
+                Note over Action, DB: Thực thi trong 1 Database Transaction (ACID)
+                Action->>DB: Băm newPassword (bcrypt) & tăng tokenVersion (Global Sign-out)
+                Action->>DB: Ghi Audit Log "Đổi mật khẩu thành công"
+            end
+
+            par Gửi Email cảnh báo bảo mật chi tiết
+                Action->>Email: Gửi thư gồm (Thời gian, IP, Trình duyệt, Thiết bị)
+                Email-->>Admin: Nhận email cảnh báo chi tiết
+            end
+
+            Action-->>UI: Phản hồi đổi mật khẩu thành công
+            UI->>Login: Hủy toàn bộ phiên làm việc (Global Sign-Out) & chuyển hướng về /admin/login
+            Login-->>Admin: Hiển thị thông báo thành công & yêu cầu đăng nhập lại
+        else Nhập sai mật khẩu hiện tại (Quá 5 lần)
+            Action->>Limiter: Tăng số lần thử sai & Kích hoạt tạm khóa 30 phút
+            Action->>DB: Ghi Audit Log "Đổi mật khẩu thất bại (Locked)"
+            Action-->>UI: Trả về thông báo tài khoản bị tạm khóa 30 phút
+            UI-->>Admin: Hiển thị đếm ngược thời gian khóa
+        end
+    else Tài khoản đang bị tạm khóa
+        Action-->>UI: Từ chối xử lý (429 Too Many Requests)
+        UI-->>Admin: Thông báo tài khoản đang trong thời gian tạm khóa
+    end
+```

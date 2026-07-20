@@ -1,197 +1,143 @@
-# 🚀 Docs-First AI Boilerplate
+# 🚀 MyPortfolio — Premium Serverless Portfolio & CMS
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
-_(🇻🇳 [Đọc bản tiếng Việt](README.vi.md))_
+**MyPortfolio** là một hệ thống quản lý và trình bày hồ sơ cá nhân cao cấp, kết
+hợp giữa giao diện công khai tương tác 3D WebGL (React Three Fiber) và trang
+quản trị nội dung (CMS/Dashboard) bảo mật tối ưu cho môi trường Serverless.
 
-Welcome to the **Docs-First AI Boilerplate**! This is a Template Repository
-specifically designed following the **"Documentation-First, Code Later"**
-philosophy, optimized for workflows combining AI Agents and Domain-Driven Design
-(DDD).
-
-## 📸 Demo & Screenshots
-
-> _Put your awesome screenshots or a quick GIF demo here showing what the
-> project looks like or how it works!_
->
-> ![Demo Placeholder](https://via.placeholder.com/800x400.png?text=Your+App+Screenshot+Here)
-
-## 🌟 Features
-
-- **Tech-Agnostic:** Completely independent of any specific technology stack.
-  Can be used as a foundation for Web (React/Node), Mobile, AI, or Desktop app
-  projects.
-- **AI-Ready:** Includes built-in `.agents/` and `.ai/` directories containing
-  rules and standard workflows for AI to understand context and program within
-  your framework.
-- **Bilingual Documentation:** All documentation files come with Bilingual
-  (EN/VI) placeholders.
-- **Strict Quality Control:** Automatically enforces text and code formatting
-  with `Husky`, `Prettier`, and `Markdownlint` before every commit.
+Dự án được xây dựng dựa trên triết lý **"Docs-First, Code Later"** (Tài liệu
+trước, Lập trình sau), giúp các nhà phát triển và AI cộng tác hiệu quả thông qua
+cấu trúc phân tích nghiệp vụ rõ ràng và hệ thống liên kết kiến trúc (Knowledge
+Graph).
 
 ---
 
-## 📂 System Directory Structure
+## 🌟 Tính năng Nổi bật
+
+- **Public Portfolio UI (Premium UX):** Giao diện công khai ấn tượng tích hợp đồ
+  họa WebGL 3D (React Three Fiber & Drei), đảm bảo tốc độ tải trang tức thì
+  (<1.5s) và duy trì hiệu ứng mượt mà 60 FPS.
+- **Content Management System (CMS):** Dashboard quản trị cho phép Portfolio
+  Owner CRUD hồ sơ cá nhân, học vấn, kinh nghiệm, kỹ năng, chứng chỉ, và các dự
+  án mà không cần can thiệp mã nguồn.
+- **Content Lifecycle & Versioning:** Quản lý vòng đời nội dung thông qua các
+  trạng thái `DRAFT`, `PUBLISHED`, và `ARCHIVED`. Tự động tạo phiên bản lịch sử
+  mỗi khi xuất bản và hỗ trợ Rollback về phiên bản cũ.
+- **Scheduled Publishing:** Lên lịch hẹn giờ tự động xuất bản hoặc ẩn dự án dựa
+  trên tác vụ định kỳ (Vercel Cron Job).
+- **AI Chat Assistant:** Khung chat trợ lý ảo AI trả lời trực tiếp các câu hỏi
+  của nhà tuyển dụng dựa trên dữ liệu lý lịch của chủ sở hữu (sử dụng Gemini 1.5
+  Flash và Vercel AI SDK).
+- **Portfolio Analytics & Audit Logs:** Thu thập thống kê tương tác phi danh
+  tính (lượt tải CV, lượt xem dự án, gửi liên hệ) và ghi nhật ký hoạt động của
+  Admin để đảm bảo an toàn bảo mật.
+- **Không Tốn Chi Phí (Zero-Cost Infrastructure):** Thiết kế hệ thống tối ưu hóa
+  hoàn toàn để vận hành miễn phí lâu dài (Free Tier) trên các dịch vụ Vercel,
+  MongoDB Atlas, Resend và Cloudinary.
+
+---
+
+## 📂 Cấu trúc Thư mục Dự án
 
 ```text
-├── .agents/       # Global rules and skills specifically for AI Agents
-├── .ai/           # Workflows and system prompts guiding the AI
-├── docs/          # System-level documentation (BRD, PRD, Architecture)
-├── modules/       # Detailed analysis and design for individual Features/Domains
-├── graph/         # Project structure visualization (Document relationship network)
-├── src/           # Source code directory (Created when you start coding)
-├── package.json   # Linting & formatting configuration (Prettier, Husky, Lint)
-└── branching-strategy.md # Git branching strategy and workflow for managing technology stacks
+├── .agents/              # Cấu hình, Rules và Kỹ năng dành riêng cho AI Agents
+├── .ai/                  # Quy trình Routing và Hiến pháp dự án hướng dẫn cho AI
+├── docs/                 # Hệ thống tài liệu phân tích nghiệp vụ & kiến trúc (SSOT)
+│   ├── analysis/         # SRS, Business Rules, Use Cases, User Flows
+│   ├── architecture/     # Thiết kế hệ thống, Database Schema, API spec
+│   ├── project/          # Vision, Tech-Stack, Glossary, Status, Metadata Schema
+│   ├── requirements/     # BRD, PRD, RTM (Traceability)
+│   └── ui/               # Quy chuẩn UI Guidelines & Mockups
+├── graph/                # Công cụ tự sinh và hiển thị trực quan đồ thị tài liệu dự án
+├── prisma/               # Định nghĩa Prisma Schema liên kết MongoDB
+├── public/               # Tài nguyên tĩnh (Fonts, Logos, Hình ảnh)
+└── src/                  # Mã nguồn chính của ứng dụng Next.js App Router
+    ├── app/              # Các routes giao diện public, admin dashboard và API
+    └── lib/              # Các hàm bổ trợ (Audit log helper, Prisma client)
 ```
 
 ---
 
-## 🔄 Standard Workflow
+## 🛠️ Hướng dẫn Cài đặt & Khởi chạy (Local Development)
 
-To ensure the system (and AI) coordinate most effectively, you **MUST** follow
-this rule: **Do not write code without clear documentation.**
+### 1. Chuẩn bị trước
 
-Below is the step-by-step workflow for every project:
+Đảm bảo bạn đã cài đặt các công cụ sau trên máy:
 
-### Step 1: Project Initialization
+- **Node.js** (Phiên bản v18 trở lên)
+- Trình quản lý gói **pnpm** (hoặc `npm`)
+- Cơ sở dữ liệu **MongoDB** (Khuyên dùng cluster MongoDB Atlas miễn phí)
 
-1. **Clone Repo:** Initialize a new project from this template.
+### 2. Cài đặt thư viện
 
-   ```bash
-   git clone https://github.com/your-username/your-project-name.git
-   cd your-project-name
-   ```
+Tại thư mục gốc của dự án, chạy lệnh:
 
-2. **Install Tools:** Activate the automatic error checking system (Husky,
-   Prettier, Markdownlint).
+```bash
+pnpm install
+# hoặc: npm install
+```
 
-   ```bash
-   # Make sure you have Node.js installed (v18+)
-   npm install
-   ```
+### 3. Cấu hình biến môi trường
 
-3. **Create Branch:** From the `main` branch (which contains documentation),
-   branch out to the technology stack you intend to use.
+1. Nhân bản file `.env.example` thành `.env`:
 
    ```bash
-   git checkout -b base-react
-   # or
-   git checkout -b base-nestjs
+   cp .env.example .env
    ```
 
-### Step 2: High-Level Requirements Specification (Project Level)
+2. Mở file `.env` và cập nhật các thông số:
+   - `DATABASE_URL`: Đường dẫn kết nối MongoDB Atlas của bạn.
+   - `NEXTAUTH_SECRET`: Tạo một chuỗi bí mật ngẫu nhiên dùng để mã hóa session.
+   - `GOOGLE_CLIENT_ID` & `GOOGLE_CLIENT_SECRET`: Thông tin xác thực Google
+     OAuth.
+   - `ADMIN_GOOGLE_EMAIL`: Email quản trị viên duy nhất được phép đăng nhập vào
+     trang CMS qua Google OAuth.
 
-Before diving into details, go to the `docs/` directory to define the big
-picture of your project. Ensure **NO FILE IS LEFT EMPTY** in the following
-directories:
+### 4. Khởi tạo Cơ sở dữ liệu với Prisma
 
-- **`docs/project/` (Project Foundation):**
-  - `vision.md`: Defines the Vision, mission, and core values of the entire
-    project.
-  - `tech-stack.md`: Declares the list of Technologies, languages, and libraries
-    to be used.
-  - `project-structure.md`: A diagram explaining the actual source code
-    directory structure.
-  - `glossary.md`: A dictionary explaining specialized terminology used in the
-    project.
-  - `status.md`: Tracks current progress, versioning, and system status.
-  - `metadata-schema.md`: Rules for identification (ID) and Metadata structure
-    for all documents.
+Đồng bộ cấu trúc schema của Prisma sang MongoDB Atlas và sinh code Client:
 
-- **`docs/requirements/` (Business Requirements):**
-  - `brd.md`: Business Requirements Document (Objectives, scope, target
-    audience).
-  - `prd.md`: Product Requirements Document (Detailed features, User Stories).
-  - `rtm.md`: Requirements Traceability Matrix (Ensures code meets design).
+```bash
+npx prisma generate
+npx prisma db push
+```
 
-- **`docs/architecture/` (System Architecture):**
-  - `architecture.md`: Overall system architecture design (Frontend, Backend,
-    Cloud).
-  - `database.md`: Database structure and ERD.
-  - `api.md`: Standards and list of system-level network protocols.
+### 5. Chạy Server phát triển
 
-- **`docs/analysis/` (Detailed Analysis):**
-  - `business-rules.md`: Declares strict Business Rules that must be followed.
-  - `use-cases.md`: Lists the system's Use Cases.
-  - `user-flows.md`: Lists the overall User Flows.
-  - `srs.md`: Detailed Software Requirements Specification.
+```bash
+pnpm dev
+# hoặc: npm run dev
+```
 
-- **`docs/ui/` & `docs/changelog/`:**
-  - `ui/ui-guidelines.md`: UI guidelines (colors, fonts, components). You should
-    also place HTML/CSS Mockups/Templates in the `docs/ui/` directory for
-    reference.
-  - `changelog/changes.md`: Release Notes for every project update.
-
-**Note on Code Support Directories (Do not leave empty):**
-
-- **`mock-data/`**: Contains fake data JSON files. Crucial for Frontend or AI to
-  render test UIs before real databases exist. Fill with data matching your API.
-- **`tests/`**: Contains test scripts (Unit tests, E2E tests).
-- **`graph/`**: Tools to auto-generate the document relationship network.
-
-### Step 3: Module Analysis & Design (Feature Level)
-
-When preparing to program a specific feature (e.g., Payment, Authentication),
-work within the `modules/` directory:
-
-1. Copy the `modules/sample-module` folder and rename it to your feature's name
-   (e.g., `modules/payment`).
-2. Fill out the information in these files completely:
-   - `overview.md`: What is the purpose and scope of this module?
-   - `requirements.md`: The specific functional requirements it must have.
-   - `flow.md`: Draw the operational flowchart (using Mermaid JS).
-   - `api.md`: Design the data flow (API Request/Response).
-3. **Formatting Rule:** Every document must follow Markdown standards (or
-   `Markdownlint` will throw errors). Specifically, document structure and
-   metadata **MUST** comply with internal rules defined in
-   `docs/project/metadata-schema.md` along with AI rules in `.agents/`.
-
-### Step 4: Coding Phase
-
-Only after Step 3 is complete (Module documentation is finalized and committed):
-
-- You (or the AI Agent) are allowed to start writing Source Code.
-- **For Frontend Development:** Developers or AI MUST strictly reference
-  user-specified HTML/CSS mockups (placed in the `docs/ui/` folder) to ensure
-  the code exactly matches the design.
-- **Source Code Structure:** Code can be placed centrally in `src/`, or directly
-  inside the module's folder (e.g., `modules/payment/controller.ts` if following
-  a Modular Architecture).
-
-### Step 5: Commit & Push
-
-Run `git commit`. The Husky + Lint-staged system will pause to automatically
-format code using Prettier and check markdown spelling/syntax before
-successfully pushing to the Repository.
+Truy cập `http://localhost:3000` trên trình duyệt để kiểm tra ứng dụng.
 
 ---
 
-## 🤖 AI Integration Guide
+## 🔄 Quy trình Hợp tác Tài liệu & Lập trình (Docs-First)
 
-This boilerplate comes with an `.agents/` directory containing default skills
-and rules. Depending on the AI tool you use, follow these instructions so the AI
-can "understand" these rules:
+Dự án này áp dụng nguyên tắc **Docs-First**: Không viết mã nguồn khi chưa đặc tả
+rõ ràng tài liệu nghiệp vụ.
 
-### 1. For IDE-integrated AI (Cursor, VSCode Copilot, etc.)
+### Cập nhật Đồ thị Kiến trúc (Knowledge Graph)
 
-We recommend using the **Pointer File** method to ensure the AI always
-references the latest rules from `.agents/` (Single Source of Truth).
+Mỗi khi bạn thêm mới hoặc thay đổi một tài liệu nghiệp vụ/kỹ thuật trong thư mục
+`docs/`, vui lòng chạy lệnh dưới đây để đồng bộ lại sơ đồ liên quan:
 
-- **Example with Cursor:** Create a file named `.cursorrules` in the root
-  directory and paste this line:
-  > _"Always read and strictly follow the global rules defined in
-  > `.agents/AGENTS.md` and check `.agents/skills/` for specific task
-  > instructions before writing any code."_
+```bash
+npm run generate-graph
+```
 
-### 2. For Web Chat AI (ChatGPT, Claude, Gemini)
+Bạn có thể mở file `graph/graph.html` bằng trình duyệt để xem biểu đồ trực quan
+mối liên hệ giữa các tài liệu, API và các mã nguồn trong dự án.
 
-These AIs cannot automatically scan files on your computer. Use the **Manual
-Copy** method:
+---
 
-- Before starting a new chat or project, open `.agents/AGENTS.md` or relevant
-  `SKILL.md` files.
-- **Copy** the content and **Paste** it into the AI's _System Prompt_ (or
-  _Custom Instructions_), or directly into the first chat message.
-- This allows you to feed the AI the exact skills needed for the task, saving
-  context memory (Tokens) and keeping the AI focused.
+## 🤖 Hướng dẫn tích hợp AI Agents
+
+Dự án được tối ưu hóa cho các trợ lý AI lập trình (như Cursor, Copilot,
+Gemini/Claude). AI Agent khi làm việc với codebase này **phải tuân thủ**:
+
+1. Đọc kỹ các quy tắc toàn cục tại `.agents/AGENTS.md`.
+2. Tuân thủ quy trình Routing tại `.ai/routing.md` và tuân theo Hiến pháp dự án
+   tại `.ai/constitution.md` trước khi đề xuất bất kỳ thay đổi nào.
