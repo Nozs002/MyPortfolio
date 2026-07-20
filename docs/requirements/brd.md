@@ -62,7 +62,8 @@ last_updated: 2026-07-10
 ## In Scope
 
 - **Public Website:** Hiển thị hồ sơ cá nhân, dự án, kỹ năng, kinh nghiệm, học
-  vấn, chứng chỉ, blog; Cho phép tải CV, gửi thông tin liên hệ; Tích hợp trợ lý ảo AI để trả lời các câu hỏi cơ bản về ứng viên.
+  vấn, chứng chỉ, blog; Cho phép tải CV, gửi thông tin liên hệ; Tích hợp trợ lý
+  ảo AI để trả lời các câu hỏi cơ bản về ứng viên.
 - **Content Management:** Quản trị hồ sơ, dự án, kỹ năng, kinh nghiệm, học vấn,
   chứng chỉ, blog, CV, hình ảnh, tin nhắn.
 - **Content Lifecycle:** Tạo mới, chỉnh sửa, lưu bản nháp, xuất bản, lưu trữ và
@@ -101,7 +102,7 @@ last_updated: 2026-07-10
 | BR-11 | Scheduled Publishing | Hệ thống phải hỗ trợ lên lịch xuất và ngừng xuất bản nội dung.                                                                      |
 | BR-13 | Backup & Restore     | Hệ thống phải hỗ trợ sao lưu và khôi phục dữ liệu nghiệp vụ.                                                                        |
 | BR-14 | Password Management  | Hệ thống phải hỗ trợ người quản trị đổi mật khẩu và khôi phục mật khẩu (quên mật khẩu) qua email đăng ký.                           |
-| BR-15 | AI Chat Assistant     | Hệ thống phải cung cấp một khung chat trợ lý ảo AI để trả lời các câu hỏi cơ bản về chủ sở hữu dựa trên dữ liệu hồ sơ cá nhân.        |
+| BR-15 | AI Chat Assistant    | Hệ thống phải cung cấp một khung chat trợ lý ảo AI để trả lời các câu hỏi cơ bản về chủ sở hữu dựa trên dữ liệu hồ sơ cá nhân.      |
 
 # Business Rules
 
@@ -141,8 +142,11 @@ last_updated: 2026-07-10
   nhiên, chỉ duy nhất địa chỉ email của Admin được chỉ định trong cấu hình môi
   trường mới được quyền xác thực thành công; mọi tài khoản Google khác sẽ bị hệ
   thống từ chối truy cập ngay tại hàm callback xác thực.
-- **BRULE-18:** Trợ lý ảo AI chỉ được phép trả lời dựa trên thông tin đã xuất bản (Published) thuộc quyền sở hữu của Portfolio Owner trong cơ sở dữ liệu (Hồ sơ, Dự án, Kỹ năng, Chứng chỉ, Kinh nghiệm, Học vấn). AI không được tự ý bịa đặt (hallucinate) thông tin cá nhân chưa có hoặc tiết lộ các dữ liệu nhạy cảm liên quan đến quản trị (Mật khẩu, Logs, Tin nhắn liên hệ của khách hàng khác).
-
+- **BRULE-18:** Trợ lý ảo AI chỉ được phép trả lời dựa trên thông tin đã xuất
+  bản (Published) thuộc quyền sở hữu của Portfolio Owner trong cơ sở dữ liệu (Hồ
+  sơ, Dự án, Kỹ năng, Chứng chỉ, Kinh nghiệm, Học vấn). AI không được tự ý bịa
+  đặt (hallucinate) thông tin cá nhân chưa có hoặc tiết lộ các dữ liệu nhạy cảm
+  liên quan đến quản trị (Mật khẩu, Logs, Tin nhắn liên hệ của khách hàng khác).
 
 # Constraints
 

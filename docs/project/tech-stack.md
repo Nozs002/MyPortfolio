@@ -42,9 +42,13 @@ người dùng cao cấp (Premium UX), và khả năng triển khai nhanh (Serve
 - **Lưu trữ ảnh & Media**: Cloudinary (Tối ưu hóa ảnh tự động, phân phối qua
   CDN).
 - **Tích hợp Trí tuệ Nhân tạo (AI/LLM)**:
-  - **Vercel AI SDK (`ai` package):** Thư viện chuẩn hỗ trợ xử lý luồng (streaming) dữ liệu phản hồi từ AI trên Next.js Backend.
-  - **Google AI Provider (`@ai-sdk/google`):** SDK kết nối API của Google AI Studio.
-  - **Mô hình ngôn ngữ (Model):** `gemini-1.5-flash` nhờ ưu thế tốc độ xử lý vượt trội, khả năng đọc ngữ cảnh tốt và cung cấp gói dịch vụ miễn phí (Free Tier) dồi dào.
+  - **Vercel AI SDK (`ai` package):** Thư viện chuẩn hỗ trợ xử lý luồng
+    (streaming) dữ liệu phản hồi từ AI trên Next.js Backend.
+  - **Google AI Provider (`@ai-sdk/google`):** SDK kết nối API của Google AI
+    Studio.
+  - **Mô hình ngôn ngữ (Model):** `gemini-1.5-flash` nhờ ưu thế tốc độ xử lý
+    vượt trội, khả năng đọc ngữ cảnh tốt và cung cấp gói dịch vụ miễn phí (Free
+    Tier) dồi dào.
 
 ## Cơ sở dữ liệu (Database)
 
