@@ -130,6 +130,30 @@
     "relation": "depends_on"
   },
   {
+    "source": "modules/admin/password-recovery/api.md",
+    "target": "MOD-ADMIN-RECOVERY",
+    "relation": "belongs_to",
+    "description": "Module domain mapping"
+  },
+  {
+    "source": "modules/admin/password-recovery/flow.md",
+    "target": "MOD-ADMIN-RECOVERY",
+    "relation": "belongs_to",
+    "description": "Module domain mapping"
+  },
+  {
+    "source": "modules/admin/password-recovery/overview.md",
+    "target": "MOD-ADMIN-RECOVERY",
+    "relation": "belongs_to",
+    "description": "Module domain mapping"
+  },
+  {
+    "source": "modules/admin/password-recovery/requirements.md",
+    "target": "MOD-ADMIN-RECOVERY",
+    "relation": "belongs_to",
+    "description": "Module domain mapping"
+  },
+  {
     "source": "DOC-SRS",
     "target": "SRC-NEXTAUTH-HANDLER",
     "relation": "implements"
