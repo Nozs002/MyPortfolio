@@ -226,15 +226,18 @@ thống để đảm bảo an toàn dữ liệu:
 
 ### 2.7. Phân hệ Quản lý Tài khoản & Mật khẩu (Account & Password Management)
 
-- **Mô tả:** Cho phép Admin đổi mật khẩu tài khoản trong trang quản trị, hoặc
-  yêu cầu khôi phục lại mật khẩu thông qua địa chỉ email đăng ký nếu quên mật
-  khẩu.
+- **Mô tả:** Cho phép Admin đổi mật khẩu tài khoản an toàn trong trang quản trị,
+  hoặc yêu cầu khôi phục lại mật khẩu thông qua địa chỉ email đăng ký nếu quên
+  mật khẩu.
 - **Tính năng chính:**
   - **Đổi mật khẩu (Change Password):** Form đổi mật khẩu trong Dashboard yêu
-    cầu nhập mật khẩu hiện tại, mật khẩu mới (tối thiểu 8 ký tự), và nhập lại
-    mật khẩu mới để xác nhận. Sau khi thành công, hệ thống mã hóa mật khẩu mới
-    ghi đè DB, hủy session hiện tại bắt đăng nhập lại, gửi email cảnh báo bảo
-    mật và tạo bản ghi Audit Log.
+    cầu nhập cả 3 trường (`currentPassword`, `newPassword`, `confirmPassword`).
+    Sau khi kiểm tra Rate Limit (khóa 30 phút nếu sai 5 lần/15 phút), hệ thống
+    mở Database Transaction mã hóa mật khẩu mới (bcrypt), cập nhật DB và ghi
+    Audit Log đồng thời. Tiếp đó, hệ thống thực hiện hủy toàn bộ các phiên làm
+    việc đang tồn tại trên tất cả thiết bị (Global Sign-out) và gửi một Email
+    cảnh báo bảo mật chứa chi tiết thời gian, địa chỉ IP, trình duyệt và loại
+    thiết bị.
   - **Quên mật khẩu / Khôi phục mật khẩu (Password Recovery):**
     - Khách truy cập vào route `/admin/forgot-password`, điền địa chỉ email đã
       đăng ký của Admin.
@@ -247,15 +250,26 @@ thống để đảm bảo an toàn dữ liệu:
 
 ### 2.8. Phân hệ Trợ lý ảo AI (AI Portfolio Assistant)
 
-- **Mô tả:** Cung cấp khung trò chuyện thông minh (Floating Chat Widget) ngoài website công khai để nhà tuyển dụng và khách truy cập tự do hỏi đáp thông tin năng lực, kinh nghiệm, kỹ năng và dự án của chủ sở hữu.
+- **Mô tả:** Cung cấp khung trò chuyện thông minh (Floating Chat Widget) ngoài
+  website công khai để nhà tuyển dụng và khách truy cập tự do hỏi đáp thông tin
+  năng lực, kinh nghiệm, kỹ năng và dự án của chủ sở hữu.
 - **Tính năng chính:**
-  - **Giao diện Chatbot Nổi (Floating Widget):** Thu nhỏ thành bong bóng chat (FAB) ở góc phải dưới; click vào mở ra hộp thoại chat tiện lợi.
-  - **Tích hợp mô hình ngôn ngữ lớn (LLM):** Sử dụng thư viện Vercel AI SDK kết nối trực tiếp với Google Gemini API (model `gemini-1.5-flash`).
+  - **Giao diện Chatbot Nổi (Floating Widget):** Thu nhỏ thành bong bóng chat
+    (FAB) ở góc phải dưới; click vào mở ra hộp thoại chat tiện lợi.
+  - **Tích hợp mô hình ngôn ngữ lớn (LLM):** Sử dụng thư viện Vercel AI SDK kết
+    nối trực tiếp với Google Gemini API (model `gemini-1.5-flash`).
   - **Nạp dữ liệu ngữ cảnh động (Dynamic Context):**
-    - Khi nhận câu hỏi từ Client, Server tự động truy vấn MongoDB Atlas để lấy các thông tin đã xuất bản: Profile cá nhân, Kinh nghiệm làm việc, Kỹ năng, Học vấn, Chứng chỉ, các Dự án công khai.
-    - Dữ liệu này được cấu trúc thành System Prompt gửi làm ngữ cảnh gốc cho mô hình Gemini, đảm bảo AI trả lời trung thực và chính xác về ứng viên.
-  - **Không lưu lịch sử trên Server:** Để tối ưu hóa tài nguyên cơ sở dữ liệu và bảo vệ quyền riêng tư, lịch sử hội thoại chỉ được duy trì trong bộ nhớ tạm thời của React state trên trình duyệt của khách hàng.
-  - **Giới hạn lưu lượng (Rate Limiting):** Áp dụng giới hạn tối đa 10 lượt chat/phút trên mỗi địa chỉ IP để chống spam và phá hoại hạn mức API key miễn phí.
+    - Khi nhận câu hỏi từ Client, Server tự động truy vấn MongoDB Atlas để lấy
+      các thông tin đã xuất bản: Profile cá nhân, Kinh nghiệm làm việc, Kỹ năng,
+      Học vấn, Chứng chỉ, các Dự án công khai.
+    - Dữ liệu này được cấu trúc thành System Prompt gửi làm ngữ cảnh gốc cho mô
+      hình Gemini, đảm bảo AI trả lời trung thực và chính xác về ứng viên.
+  - **Không lưu lịch sử trên Server:** Để tối ưu hóa tài nguyên cơ sở dữ liệu và
+    bảo vệ quyền riêng tư, lịch sử hội thoại chỉ được duy trì trong bộ nhớ tạm
+    thời của React state trên trình duyệt của khách hàng.
+  - **Giới hạn lưu lượng (Rate Limiting):** Áp dụng giới hạn tối đa 10 lượt
+    chat/phút trên mỗi địa chỉ IP để chống spam và phá hoại hạn mức API key miễn
+    phí.
 
 ## 3. Yêu Cầu Phi Chức Năng (Non-Functional Requirements)
 
@@ -301,15 +315,31 @@ thống để đảm bảo an toàn dữ liệu:
 Giao diện hệ thống được chia làm hai khu vực hoàn toàn độc lập:
 
 #### A. Khu vực Công khai (Public Facing Website)
-- **Trang chủ (`/`):** Thiết kế dưới dạng **dải trang dài cuộn (Single-page scroll)**. Tích hợp tương tác 3D WebGL (React Three Fiber) để tăng trải nghiệm Premium. Các phần nội dung hiển thị tuần tự: Hero -> Profile/About -> Experience -> Education & Certifications -> Skills -> Featured Projects -> Contact & CV Download.
-- **Trang chi tiết dự án (`/projects/[slug]`):** Trang độc lập hiển thị thông tin chi tiết của từng dự án (ngày thực hiện, vai trò, quy mô nhóm, techstack và nội dung Markdown của dự án). Hỗ trợ Dynamic SEO Metadata cho từng trang.
-- **Trang chi tiết bài viết blog (`/blog/[slug]`):** Trang độc lập hiển thị nội dung bài viết chia sẻ công nghệ (được triển khai ở Phase 2).
+
+- **Trang chủ (`/`):** Thiết kế dưới dạng **dải trang dài cuộn (Single-page
+  scroll)**. Tích hợp tương tác 3D WebGL (React Three Fiber) để tăng trải nghiệm
+  Premium. Các phần nội dung hiển thị tuần tự: Hero -> Profile/About ->
+  Experience -> Education & Certifications -> Skills -> Featured Projects ->
+  Contact & CV Download.
+- **Trang chi tiết dự án (`/projects/[slug]`):** Trang độc lập hiển thị thông
+  tin chi tiết của từng dự án (ngày thực hiện, vai trò, quy mô nhóm, techstack
+  và nội dung Markdown của dự án). Hỗ trợ Dynamic SEO Metadata cho từng trang.
+- **Trang chi tiết bài viết blog (`/blog/[slug]`):** Trang độc lập hiển thị nội
+  dung bài viết chia sẻ công nghệ (được triển khai ở Phase 2).
 
 #### B. Khu vực Quản trị (CMS Workspace - Admin Area)
-- **Trang Đăng nhập (`/admin/login`):** Giao diện đăng nhập bảo mật (Credentials & Google OAuth).
-- **Trang Dashboard quản trị (`/dashboard`):** Bố cục Dashboard Shell gồm thanh điều hướng (Sidebar) bên trái và khu vực hiển thị dữ liệu bên phải.
-- **Các phân hệ quản lý dữ liệu:** `/dashboard/profile`, `/dashboard/projects`, `/dashboard/blog`, `/dashboard/contacts`, `/dashboard/audit-logs`, `/dashboard/analytics`.
+
+- **Trang Đăng nhập (`/admin/login`):** Giao diện đăng nhập bảo mật (Credentials
+  & Google OAuth).
+- **Trang Dashboard quản trị (`/dashboard`):** Bố cục Dashboard Shell gồm thanh
+  điều hướng (Sidebar) bên trái và khu vực hiển thị dữ liệu bên phải.
+- **Các phân hệ quản lý dữ liệu:** `/dashboard/profile`, `/dashboard/projects`,
+  `/dashboard/blog`, `/dashboard/contacts`, `/dashboard/audit-logs`,
+  `/dashboard/analytics`.
 
 ### 4.2. Nguyên tắc Thiết kế & Hướng dẫn Giao diện (UI Guidelines)
-- Đặc tả chi tiết về mã màu (Color Palette), kiểu chữ (Typography), lưới (Grid Layout), linh kiện giao diện (UI Components), Glassmorphism và hiệu ứng chuyển động (Animations) được tài liệu hóa chi tiết tại [ui-guidelines.md](file:///d:/Workspace/Projects/my-portfolio/docs/ui/ui-guidelines.md).
 
+- Đặc tả chi tiết về mã màu (Color Palette), kiểu chữ (Typography), lưới (Grid
+  Layout), linh kiện giao diện (UI Components), Glassmorphism và hiệu ứng chuyển
+  động (Animations) được tài liệu hóa chi tiết tại
+  [ui-guidelines.md](file:///d:/Workspace/Projects/my-portfolio/docs/ui/ui-guidelines.md).

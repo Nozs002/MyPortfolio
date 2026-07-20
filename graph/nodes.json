@@ -133,6 +133,34 @@
     "description": []
   },
   {
+    "id": "modules/admin/change-password/api.md",
+    "label": "api",
+    "type": "document",
+    "path": "modules/admin/change-password/api.md",
+    "description": ""
+  },
+  {
+    "id": "modules/admin/change-password/flow.md",
+    "label": "flow",
+    "type": "document",
+    "path": "modules/admin/change-password/flow.md",
+    "description": ""
+  },
+  {
+    "id": "modules/admin/change-password/overview.md",
+    "label": "overview",
+    "type": "document",
+    "path": "modules/admin/change-password/overview.md",
+    "description": ""
+  },
+  {
+    "id": "modules/admin/change-password/requirements.md",
+    "label": "requirements",
+    "type": "document",
+    "path": "modules/admin/change-password/requirements.md",
+    "description": ""
+  },
+  {
     "id": "modules/admin/login/api.md",
     "label": "api",
     "type": "document",
