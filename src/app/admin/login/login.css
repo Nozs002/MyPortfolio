@@ -424,6 +424,27 @@
   box-shadow: 0 4px 14px rgba(0, 123, 255, 0.2);
 }
 
+.btn-secondary-outline {
+  background: transparent;
+  border: 1px solid var(--accent-primary);
+  color: var(--text-primary) !important;
+  border-radius: 30px;
+  padding: 11px 30px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.btn-secondary-outline:hover {
+  background: rgba(0, 123, 255, 0.1);
+  transform: translateY(-2px);
+}
+
 .forgot-link-center {
   color: var(--text-secondary);
   font-weight: 500;
@@ -435,6 +456,39 @@
 .forgot-link-center:hover {
   color: var(--accent-primary);
   text-decoration: underline;
+}
+
+/* Password complexity indicators */
+.password-requirements-list {
+  text-align: left;
+  font-size: 0.8rem;
+  margin: 0.75rem 0;
+  padding: 0.5rem 0.75rem;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--border-color);
+}
+
+[data-theme='dark'] .password-requirements-list,
+.dark .password-requirements-list {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.req-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 3px;
+  color: var(--text-secondary);
+  transition: color 0.2s ease;
+}
+
+.req-item.valid {
+  color: #10b981;
+}
+
+.req-item.invalid {
+  color: var(--text-secondary);
 }
 
 /* Theme Toggle placement override */

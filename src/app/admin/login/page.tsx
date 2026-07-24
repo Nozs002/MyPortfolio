@@ -352,7 +352,10 @@ function LoginFormContent() {
               </label>
               <div className="form-row-column">
                 <div className="forgot-password-container">
-                  <a href="#" className="forgot-link-right">
+                  <a
+                    href="/admin/forgot-password"
+                    className="forgot-link-right"
+                  >
                     Forgot password?
                   </a>
                 </div>

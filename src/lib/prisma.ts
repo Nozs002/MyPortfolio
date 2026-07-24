@@ -5,7 +5,13 @@
 import { PrismaClient } from '../generated/prisma';
 
 const prismaClientSingleton = () => {
-  return new PrismaClient();
+  return new PrismaClient(
+    process.env.DATABASE_URL
+      ? {
+          datasourceUrl: process.env.DATABASE_URL,
+        }
+      : undefined,
+  );
 };
 
 declare global {

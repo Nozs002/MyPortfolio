@@ -222,5 +222,68 @@
     "type": "source",
     "path": "src/middleware.ts",
     "description": "Source Code: middleware.ts"
+  },
+  {
+    "id": "modules/admin/password-recovery/overview.md",
+    "label": "overview",
+    "type": "document",
+    "path": "modules/admin/password-recovery/overview.md",
+    "description": "Password recovery module overview documentation"
+  },
+  {
+    "id": "modules/admin/password-recovery/requirements.md",
+    "label": "requirements",
+    "type": "document",
+    "path": "modules/admin/password-recovery/requirements.md",
+    "description": "Password recovery functional requirements"
+  },
+  {
+    "id": "modules/admin/password-recovery/flow.md",
+    "label": "flow",
+    "type": "document",
+    "path": "modules/admin/password-recovery/flow.md",
+    "description": "Password recovery mermaid sequence flow diagrams"
+  },
+  {
+    "id": "modules/admin/password-recovery/api.md",
+    "label": "api",
+    "type": "document",
+    "path": "modules/admin/password-recovery/api.md",
+    "description": "Password recovery Server Actions & API specifications"
+  },
+  {
+    "id": "SRC-AUTH-ACTIONS",
+    "label": "auth.ts",
+    "type": "source",
+    "path": "src/app/actions/auth.ts",
+    "description": "Source Code: auth.ts Server Actions for authentication & password reset"
+  },
+  {
+    "id": "SRC-FORGOT-PASSWORD-PAGE",
+    "label": "forgot-password",
+    "type": "source",
+    "path": "src/app/admin/forgot-password/page.tsx",
+    "description": "Source Code: forgot password request page"
+  },
+  {
+    "id": "SRC-RESET-PASSWORD-PAGE",
+    "label": "reset-password",
+    "type": "source",
+    "path": "src/app/admin/reset-password/page.tsx",
+    "description": "Source Code: reset password page"
+  },
+  {
+    "id": "SRC-MAIL-UTIL",
+    "label": "mail.ts",
+    "type": "source",
+    "path": "src/lib/mail.ts",
+    "description": "Source Code: mail.ts Nodemailer helper"
+  },
+  {
+    "id": "SRC-RATE-LIMIT-UTIL",
+    "label": "rate-limit.ts",
+    "type": "source",
+    "path": "src/lib/rate-limit.ts",
+    "description": "Source Code: rate-limit.ts IP rate limiter"
   }
 ]

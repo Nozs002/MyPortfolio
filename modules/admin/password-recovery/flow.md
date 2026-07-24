@@ -3,7 +3,7 @@ id: modules/admin/password-recovery/flow.md
 type: document
 title: flow
 module: MOD-ADMIN-RECOVERY
-status: draft
+status: approved
 version: 1.0
 owner: PO
 tags:

@@ -13,3 +13,7 @@ coverage/
 
 # Thư mục chứa các tệp nháp cục bộ
 scratch/
+
+# Obsidian local settings
+.obsidian/
+

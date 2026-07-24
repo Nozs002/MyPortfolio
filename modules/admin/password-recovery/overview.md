@@ -3,7 +3,7 @@ id: modules/admin/password-recovery/overview.md
 type: document
 title: overview
 module: MOD-ADMIN-RECOVERY
-status: draft
+status: approved
 version: 1.0
 owner: PO
 tags:

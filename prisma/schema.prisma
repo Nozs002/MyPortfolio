@@ -13,14 +13,24 @@ datasource db {
 
 // 1. Tài khoản quản trị duy nhất (Admin Account)
 model User {
-  id           String     @id @default(auto()) @map("_id") @db.ObjectId
-  username     String     @unique
-  passwordHash String
-  email        String     @unique
-  name         String?
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
-  auditLogs    AuditLog[]
+  id              String     @id @default(auto()) @map("_id") @db.ObjectId
+  username        String     @unique
+  passwordHash    String
+  email           String     @unique
+  name            String?
+  passwordVersion Int        @default(1)
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+  auditLogs       AuditLog[]
+}
+
+// 1.1. Token khôi phục mật khẩu (Password Reset Token)
+model PasswordResetToken {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String
+  token     String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
 }
 
 // 2. Thông tin cá nhân (Profile Details)

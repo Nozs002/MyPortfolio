@@ -101,6 +101,20 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
+        const dbUser = await prisma.user.findUnique({
+          where: { id: user.id },
+          select: { passwordVersion: true },
+        });
+        token.passwordVersion = dbUser?.passwordVersion ?? 1;
+      } else if (token.id) {
+        // Verify current passwordVersion against database to invalidate old sessions (REQ-RECOVERY-015)
+        const dbUser = await prisma.user.findUnique({
+          where: { id: token.id as string },
+          select: { passwordVersion: true },
+        });
+        if (!dbUser || dbUser.passwordVersion !== token.passwordVersion) {
+          return {} as any;
+        }
       }
       return token;
     },

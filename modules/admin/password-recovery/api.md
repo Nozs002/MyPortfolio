@@ -3,7 +3,7 @@ id: modules/admin/password-recovery/api.md
 type: document
 title: api
 module: MOD-ADMIN-RECOVERY
-status: draft
+status: approved
 version: 1.0
 owner: PO
 tags:
